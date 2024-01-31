@@ -33,3 +33,13 @@
   background-color: #000; /* Adjust the color of the underline */
   display: block;
 }
+.vertical-line {
+  position: absolute;
+  border-left: 1px solid black; /* You can customize the color and style */
+  height: 100%;
+  margin: 0 10px; /* Adjust the margin as needed */
+}
+.potensi-container {
+  min-height: 150px; /* Set the minimum height of the parent container */
+  position: relative;
+}

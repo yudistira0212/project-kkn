@@ -134,24 +134,38 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="mt-[320px] px-6 pt-14 lg:px-8">
-          <h1 className="underlined-text">
+        {/* POTENSI KAMPUNG */}
+        <div className=" text-center sm:mt-[100px] md:mt-[120px] lg:mt-[130px] xl:mt-[380px] 2xl:mt-[440px] px-6 pt-14 lg:px-8 ">
+          <h1 className="underlined-text mb-[30px]">
             <strong>POTENSI KAMPUNG</strong>
           </h1>
 
-          <div className="flex justify-between">
-            <div className="py-6">
-              <p>
+          <div className="potensi-container flex justify-around items-center">
+            <div className="flex flex-col">
+              <p className="lg:w-[400px] xl:w-[400px] text-left ">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
                 quam maecenas volutpat ipsum praesent praesent facilisis.
                 Molestie ligula convallis enim quam.
               </p>
-              <Image src={Rectangle6} alt="" className="py-6" />
+              <Image
+                src={Rectangle6}
+                alt=""
+                className="w-full sm:w-[300px] lg:w-[300px] xl:w-[400px] h-[500px] object-cover object-center"
+              />
             </div>
-            <div className="flex-col">
-              <Image src={Rectangle3} alt="" />
-              <p className="py-6 ">
+
+            <div className="vertical-line py-6" />
+
+            <div>
+              <div className="flex justify-end">
+                <Image
+                  src={Rectangle3}
+                  alt=""
+                  className="w-full sm:w-[300px] lg:w-[300px] xl:w-[400px] h-[500px] object-cover object-center"
+                />
+              </div>
+              <p className="lg:w-[400px] xl:w-[400px] text-right ">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
                 quam maecenas volutpat ipsum praesent praesent facilisis.
@@ -159,6 +173,12 @@ export default function Example() {
               </p>
             </div>
           </div>
+        </div>
+        {/* BERITA KAMPUNG */}
+        <div className=" text-center px-6 pt-14 lg:px-8">
+          <h1 className="underlined-text">
+            <strong>BERITA</strong>
+          </h1>
         </div>
       </div>
     </div>
