@@ -7,11 +7,9 @@ import Image from "next/image";
 import Berita1 from "./Rectangle 9.png";
 import Berita2 from "./Rectangle 8.png";
 import Berita3 from "./Rectangle 10.png";
-import IconTime from "./formkit_time.png";
+
 import IconWrite from "./jam_write.png";
-import Facebook from "./basil_facebook-solid.png";
-import Instagram from "./mdi_instagram.png";
-import Youtube from "./fa6-brands_youtube.png";
+
 
 const navigation = [
   { name: "Beranda", href: "/" },

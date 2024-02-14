@@ -1,9 +1,9 @@
 "use client";
 interface ViewUserButtonProps {
-  userId: number;
+  albumId: number;
 }
-const ViewUserButton: React.FC<ViewUserButtonProps> = ({ userId }) => {
-  const handleClick = () => alert(`user id: ${userId}`);
+const ViewUserButton: React.FC<ViewUserButtonProps> = ({ albumId }) => {
+  const handleClick = () => alert(`user id: ${albumId}`);
   return (
     <>
       <button onClick={handleClick}>Lihat User</button>

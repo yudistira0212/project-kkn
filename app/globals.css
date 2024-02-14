@@ -59,3 +59,27 @@
   min-height: 150px; /* Set the minimum height of the parent container */
   position: relative;
 }
+
+/* Add this CSS to your stylesheets or use a CSS-in-JS solution */
+
+.image-container {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.divider {
+  border-right: 1px solid #ccc; /* Customize the divider style */
+  height: 150px; /* Adjust the height of the divider */
+  margin: 0 10px; /* Adjust the margin around the divider */
+}
