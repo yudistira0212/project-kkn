@@ -24,6 +24,13 @@ const navigation = [
   { name: "Struktur Pemerintahan ", href: "struktur-pemerintahan" },
 ];
 
+interface AccordionProps {
+  data: {
+    question: string;
+    answer: string;
+  }[];
+}
+
 const dataPenduduk = [
   {
     id: "1",
@@ -113,10 +120,12 @@ export default function Example() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSlideScreen, setIsSlideScreen] = useState(false);
   const [isFooterScreen, setIsFooterScreen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const handleClick = (index) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  const handleClick = (index: number | null) => {
+    setActiveIndex((prevIndex: number | null) =>
+      prevIndex === index ? null : index
+    );
   };
 
   useEffect(() => {
@@ -174,7 +183,7 @@ export default function Example() {
     };
   });
 
-  const Accordion = ({ data }) => {
+  const Accordion: React.FC<AccordionProps> = ({ data }) => {
     return (
       <div className="w-full">
         {data.map((item, index) => (
