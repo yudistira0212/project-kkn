@@ -12,6 +12,7 @@ import Gambar3 from "./images/GAMBAR 3.jpg";
 import Gambar4 from "./images/GAMBAR 4.jpg";
 import Gambar5 from "./images/GAMBAR 5.jpg";
 import Gambar6 from "./images/GAMBAR 6.jpg";
+import Gambar7 from "./images/Struktur Organisasi.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -332,7 +333,7 @@ export default function Example() {
                 dalam wilayah administratif pemerintahan Distrik Momi Waren
                 Kabupaten Manokwari Selatan. Kampung initerbagi dalam enam Dusun
                 yaitu : Dusun Siwi 1, Dusun Lohoy, Dusun Beyangau, Dusun
-                Siwimer, Dusun Saugemes, Dusun Siwi Gunung.
+                Siwimer, Dusun Saugemes, dan Dusun Siwi Gunung.
               </p>
               <button className=" p-2 bg-[#0B3147] text-white w-[200px] rounded-[50px]">
                 Video Profil Kampung
@@ -428,14 +429,24 @@ export default function Example() {
             ))}
           </div>
         </div>
+        {/* STRUKTUR PEMERINTAHAN */}
+        <div className="text-center pt-3">
+          {" "}
+          <Link href={"/struktur-pemerintahan"}>
+            <h1 className="underlined-text mb-5 ">
+              <strong>STRUKTUR ORGANISASI</strong>
+            </h1>
+          </Link>
+          <Image src={Gambar7} alt="" className="w-full px-1" />
+        </div>
         {/* GALERI */}
-        <div className=" text-center   pt-6  text-black  pb-[100px]">
+        <div className=" text-center   pt-6  text-black bg-[#0B3147]  pb-[100px]">
           <Link href={"/galeri"}>
-            <h1 className="underlined-text mb-5">
+            <h1 className="underlined-berita text-white mb-5">
               <strong>GALERI</strong>
             </h1>
           </Link>
-          <div>
+          <div className="text-white">
             <div className="flex max-lg:flex-col items-start ">
               <Image
                 src={Gambar1}
