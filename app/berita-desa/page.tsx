@@ -10,7 +10,6 @@ import Berita3 from "./Rectangle 10.png";
 
 import IconWrite from "./jam_write.png";
 
-
 const navigation = [
   { name: "Beranda", href: "/" },
   { name: "Berita Desa", href: "berita-desa" },
@@ -69,7 +68,7 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSplitScreen, setIsSplitScreen] = useState(false);
 
-  const formatDate = (shortDate) => {
+  const formatDate = (shortDate: string) => {
     const [day, month, year] = shortDate.split("-");
 
     // Menggunakan objek Date untuk mendapatkan nama bulan
