@@ -9,9 +9,9 @@ import panitia from "./images/gaul.jpg";
 import Gambar1 from "./images/GAMBAR 1.jpg";
 import Gambar2 from "./images/GAMBAR 2.jpg";
 import Gambar3 from "./images/GAMBAR 3.jpg";
-import Gambar4 from "./images/ICT.jpg";
-import Gambar5 from "./images/Pelatihan.jpg";
-import Gambar7 from "./images/GAMBAR 7.jpg";
+import Gambar4 from "./images/GAMBAR 4.jpg";
+import Gambar5 from "./images/GAMBAR 5.jpg";
+import Gambar6 from "./images/GAMBAR 6.jpg";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -462,7 +462,7 @@ export default function Example() {
             </div>
             <div className="flex flex-row-reverse max-lg:flex-col  items-end">
               <Image
-                src={Gambar7}
+                src={Gambar6}
                 alt=""
                 className="w-[700px] rounded-l-[500px]"
               />
