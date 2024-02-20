@@ -427,46 +427,46 @@ export default function Example() {
             </h1>
           </Link>
           <div>
-            <div className="flex max-md:flex-col items-start ">
+            <div className="flex max-lg:flex-col items-start ">
               <Image
                 src={Gambar1}
                 alt=""
-                className="w-[500px] rounded-r-[500px]"
+                className="w-[700px] rounded-r-[500px]"
               />
-              <p className="text-left md:m-auto p-5">
+              <p className="text-left lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
             </div>
-            <div className="flex flex-row-reverse py-5  max-md:flex-col items-end">
+            <div className="flex flex-row-reverse py-5 max-lg:flex-col items-end">
               <Image
                 src={Gambar5}
                 alt=""
-                className="w-[500px] rounded-l-[500px]"
+                className="w-[700px] rounded-l-[500px]"
               />
-              <p className="text-right  md:m-auto p-5">
+              <p className="text-right  lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
             </div>
-            <div className="flex  max-md:flex-col pb-5 items-start">
+            <div className="flex  max-lg:flex-col pb-5 items-start">
               <Image
                 src={Gambar4}
                 alt=""
-                className="w-[500px] rounded-r-[500px]"
+                className="w-[700px] rounded-r-[500px]"
               />
-              <p className="text-left md:m-auto p-5">
+              <p className="text-left lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
             </div>
-            <div className="flex flex-row-reverse  max-md:flex-col  items-end">
+            <div className="flex flex-row-reverse max-lg:flex-col  items-end">
               <Image
                 src={Gambar7}
                 alt=""
-                className="w-[500px] rounded-l-[500px]"
+                className="w-[700px] rounded-l-[500px]"
               />
-              <p className="text-right  md:m-auto p-5">
+              <p className="text-right  lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
