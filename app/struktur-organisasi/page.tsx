@@ -88,7 +88,7 @@ function StrukturOrganisasi() {
         <h1 className="text-[30px] underlined-text">
           <strong>Struktur Organisasi </strong>
         </h1>
-        <div className="flex justify-evenly pt-5">
+        <div className="md:flex justify-evenly pt-5">
           <div className="px-4">
             <div className="bg-[#0B3147] rounded-xl mt-2 w-full h-[100px] flex items-center justify-center">
               <p className="text-white  ">VISI</p>
@@ -100,7 +100,7 @@ function StrukturOrganisasi() {
               ligula convallis enim quam.
             </p>
           </div>
-          <div className="">
+          <div className="px-4 mt-6">
             <div className="bg-[#0B3147] rounded-xl mt-2 w-full h-[100px] flex items-center justify-center">
               <p className="text-white  ">MISI</p>
             </div>
