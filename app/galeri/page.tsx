@@ -27,10 +27,10 @@ const galeri = [
   { id: "1", image: Image1, title: "Makan", details: "Nasi" },
   { id: "2", image: Image2, title: "Makan", details: "Nasi" },
   { id: "3", image: Image3, title: "Makan", details: "Nasi" },
-  { id: "7", image: Image2, title: "Makan", details: "Nasi" },
+  { id: "7", image: Gambar3, title: "Makan", details: "Nasi" },
   { id: "5", image: Image5, title: "Makan", details: "Nasi" },
   { id: "6", image: Image1, title: "Makan", details: "Nasi" },
-  { id: "4", image: Image4, title: "Makan", details: "Nasi" },
+  { id: "4", image: Gambar2, title: "Makan", details: "Nasi" },
   { id: "11", image: Image1, title: "Makan", details: "Nasi" },
   { id: "8", image: Image3, title: "Makan", details: "Nasi" },
   { id: "9", image: Image4, title: "Makan", details: "Nasi" },
@@ -123,7 +123,7 @@ function Galeri() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="pt-[100px] px-6">
+      <div className="pt-[100px] px-6 text-center">
         <h1 className="text-[30px] underlined-berita text-white">
           <strong>GALERI</strong>
         </h1>
@@ -147,6 +147,7 @@ function Galeri() {
         </Masonry>
       </div>
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
+        {" "}
         <div className="w-full md:w-2/3 ">
           <h1 className=" font-semibold">Kampung Siwi</h1>
           Jl. Raya Beji No. 13 Desa Beji Kec. Banjarmangu Kode Pos 53452

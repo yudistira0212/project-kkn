@@ -91,7 +91,7 @@ function Potensi() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="mt-[100px] px-6">
+      <div className="mt-[100px] px-6 text-center">
         <h1 className="text-[30px] underlined-text">
           <strong>Potensi Kampung Siwi</strong>
         </h1>
@@ -101,7 +101,7 @@ function Potensi() {
             alt=""
             className="sm:w-1/2 rounded-tr-[100px] rounded-bl-[100px] max-sm:rounded-[50px] sm:shadow-2xl"
           />
-          <p className="lg:w-1/2 md:m-auto px-5">
+          <p className="lg:w-1/2 md:m-auto px-5 text-left">
             <strong>Kacang Tanah</strong>
             <br />
             Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
@@ -132,7 +132,7 @@ function Potensi() {
             className="sm:w-1/2 rounded-tr-[100px] rounded-bl-[100px] max-sm:rounded-[50px] sm:shadow-2xl"
           />
 
-          <p className="lg:w-1/2 md:m-auto px-5">
+          <p className="lg:w-1/2 md:m-auto px-5 text-left">
             <strong>Tanah Subur</strong>
             <br />
             Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
@@ -143,6 +143,7 @@ function Potensi() {
         </div>
       </div>
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
+        {" "}
         <div className="w-full md:w-2/3 ">
           <h1 className=" font-semibold">Kampung Siwi</h1>
           Jl. Raya Beji No. 13 Desa Beji Kec. Banjarmangu Kode Pos 53452

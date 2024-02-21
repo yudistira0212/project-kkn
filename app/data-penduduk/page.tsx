@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import Gambar2 from "../images/GAMBAR 2.jpg";
-import Gambar3 from "../images/GAMBAR 3.jpg";
+import { Doughnut } from "react-chartjs-2"; // Import Doughnut from react-chartjs-2
+import "chart.js/auto";
 
 const navigation = [
   { name: "Beranda", href: "" },
@@ -15,12 +16,32 @@ const navigation = [
   { name: "Struktur Pemerintahan ", href: "struktur-organisasi" },
 ];
 
+const dataPenduduk = [
+  { name: "Jumlah Keluarga", value: 400 },
+  { name: "Jumlah Penduduk", value: 300 },
+  { name: "Jumlah Laki-laki", value: 300 },
+  { name: "Jumlah Perempuan", value: 200 },
+];
+
+const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50"]; // Choose your colors
+
 function DataPenduduk() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const chartData = {
+    labels: dataPenduduk.map((item) => item.name),
+    datasets: [
+      {
+        data: dataPenduduk.map((item) => item.value),
+        backgroundColor: colors,
+        hoverBackgroundColor: colors,
+      },
+    ],
+  };
+
   return (
     <div>
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="absolute inset-x-0 top-0 z-50 bg-[#0B3147]">
         <nav
           className="flex items-center justify-end p-6 lg:px-8"
           aria-label="Global"
@@ -32,7 +53,7 @@ function DataPenduduk() {
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" color="black" />
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" color="white" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -40,7 +61,7 @@ function DataPenduduk() {
               <Link
                 key={item.name}
                 href={`/${item.href}`}
-                className="text-sm font-semibold leading-6 text-black"
+                className="text-sm font-semibold leading-6 text-white"
               >
                 {item.name}
               </Link>
@@ -83,24 +104,24 @@ function DataPenduduk() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="mt-[70px] px-6">
-        <h1>
-          <strong>Data Penduduk</strong>
+      <div className="mt-[100px] px-6  text-center">
+        <h1 className="text-[30px] underlined-text">
+          <strong>Data Penduduk </strong>
         </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa ipsum.
-          Diam habitant a ultrices neque suscipit eget at. Lectus quam maecenas
-          volutpat ipsum praesent praesent facilisis. Molestie ligula convallis
-          enim quam.
-        </p>
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa ipsum.
-          Diam habitant a ultrices neque suscipit eget at. Lectus quam maecenas
-          volutpat ipsum praesent praesent facilisis. Molestie ligula convallis
-          enim quam.
-        </p>
-        <Image src={Gambar3} alt="" className="w-[600px]" />
+        <div className="flex max-sm:flex-col py-4 ">
+          <div className="mt-6 w-[500px] h-[500px]">
+            <Doughnut data={chartData} />
+          </div>
+          <p className="lg:w-1/2 md:m-auto px-5 text-left">
+            <strong>Data Penduduk</strong>
+            <br />
+            Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
+            ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus quam
+            maecenas volutpat ipsum praesent praesent facilisis. Molestie ligula
+            convallis enim quam.
+          </p>
+        </div>
+        {/* Pie Chart */}
       </div>
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
         <div className="w-full md:w-2/3 ">
