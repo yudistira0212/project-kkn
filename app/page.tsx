@@ -116,11 +116,11 @@ export default function Example() {
   const [isFooterScreen, setIsFooterScreen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleClick = (index) => {
+  const handleClick = (index: any) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  const NewsCard = ({ title, date, content, images }) => (
+  const NewsCard = ({ title, date, content, images }: any) => (
     <div className="relative flex flex-col justify-center mx-2">
       <div className="absolute left-0 right-0 bottom-0 flex flex-col justify-center text-left">
         <h2 className="text-white text-2xl font-bold mb-2">{title}</h2>
@@ -188,10 +188,10 @@ export default function Example() {
     };
   });
 
-  const Accordion = ({ data }) => {
+  const Accordion = ({ data }: any) => {
     return (
       <div className="w-full">
-        {data.map((item, index) => (
+        {data.map((item: any, index: any) => (
           <div key={index} className="mb-2 w-auto">
             <div
               className="bg-[#002B34] bg-opacity-50 p-2 cursor-pointer rounded-md "
