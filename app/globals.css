@@ -83,3 +83,14 @@
   height: 150px; /* Adjust the height of the divider */
   margin: 0 10px; /* Adjust the margin around the divider */
 }
+
+.my-masonry-grid {
+  display: flex;
+  margin-left: -30px; /* Adjust margin as needed */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 30px; /* Adjust padding as needed */
+  background-clip: padding-box;
+}

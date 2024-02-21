@@ -11,19 +11,26 @@ import Gambar2 from "./images/GAMBAR 2.jpg";
 import Gambar3 from "./images/GAMBAR 3.jpg";
 import Gambar4 from "./images/GAMBAR 4.jpg";
 import Gambar5 from "./images/GAMBAR 5.jpg";
-import Gambar7 from "./images/GAMBAR 7.jpg";
+import Gambar6 from "./images/GAMBAR 6.jpg";
+import Gambar7 from "./images/Struktur Organisasi.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const navigation = [
   { name: "Beranda", href: "" },
-  { name: "Berita Desa", href: "berita-desa" },
-  { name: "Data Desa", href: "album" },
-  { name: "Pemerintahan Desa", href: "baru" },
-  { name: "Lembaga Desa", href: "#" },
-  { name: "Profil Desa", href: "#" },
+  { name: "Potensi Kampung", href: "potensi" },
+  { name: "Data Penduduk", href: "data-penduduk" },
+  { name: "Galeri", href: "galeri" },
+  { name: "Struktur Pemerintahan ", href: "struktur-organisasi" },
 ];
+
+interface AccordionProps {
+  data: {
+    question: string;
+    answer: string;
+  }[];
+}
 
 const dataPenduduk = [
   {
@@ -114,24 +121,17 @@ export default function Example() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSlideScreen, setIsSlideScreen] = useState(false);
   const [isFooterScreen, setIsFooterScreen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const handleClick = (index: any) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, []);
+
+  const handleClick = (index: number | null) => {
+    setActiveIndex((prevIndex: number | null) =>
+      prevIndex === index ? null : index
+    );
   };
-
-  const NewsCard = ({ title, date, content, images }: any) => (
-    <div className="relative flex flex-col justify-center mx-2">
-      <div className="absolute left-0 right-0 bottom-0 flex flex-col justify-center text-left">
-        <h2 className="text-white text-2xl font-bold mb-2">{title}</h2>
-        <p className="text-white mb-2">{date}</p>
-        <p className="text-white line-clamp-3 ">{content}</p>
-      </div>
-      <div className="flex justify-center">
-        <Image src={images} className="object-cover w-full h-[520px]" alt="" />
-      </div>
-    </div>
-  );
 
   useEffect(() => {
     // Function to check the screen size and update state
@@ -188,7 +188,7 @@ export default function Example() {
     };
   });
 
-  const Accordion = ({ data }: any) => {
+  const Accordion: React.FC<AccordionProps> = ({ data }) => {
     return (
       <div className="w-full">
         {data.map((item: any, index: any) => (
@@ -263,11 +263,6 @@ export default function Example() {
               </Link>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold leading-6 text-white">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
         </nav>
         <Dialog
           as="div"
@@ -332,17 +327,21 @@ export default function Example() {
               />
             </div>
           </div>
-          <div className="max-w-2xl mt-[300px] sm:mt-[250px] lg:mt-56 xl:mt-[250px] 2xl:mt-[300px] relative z-10 mb-[170px] xl:mb-[430px]">
+          <div className="max-w-2xl mt-[300px] sm:mt-[250px] lg:mt-56 xl:mt-[250px] 2xl:mt-[300px] relative z-10 mb-[120px] lg:mb-190px] xl:mb-[350px] 2xl:mb-[1200px]">
             <div className="text-left">
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
                 Kampung Siwi
               </h1>
               <p className="mt-6 text-lg leading-8 text-white line-clamp-3 sm:line-clamp-none">
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
-                quam maecenas volutpat ipsum praesent praesent facilisis.
-                Molestie ligula convallis enim quam.
+                Kampung Siwi merupakan salah satu Kampung dari tujuh kampung
+                dalam wilayah administratif pemerintahan Distrik Momi Waren
+                Kabupaten Manokwari Selatan. Kampung ini terbagi dalam enam
+                Dusun yaitu : Dusun Siwi 1, Dusun Lohoy, Dusun Beyangau, Dusun
+                Siwimer, Dusun Saugemes, dan Dusun Siwi Gunung.
               </p>
+              <button className=" p-2 bg-[#0B3147] text-white w-[200px] rounded-[50px]">
+                Video Profil Kampung
+              </button>
             </div>
           </div>
         </div>
@@ -351,9 +350,11 @@ export default function Example() {
           className=" text-center 
           px-6  lg:px-8 "
         >
-          <h1 className="underlined-text mb-[30px]">
-            <strong>POTENSI KAMPUNG</strong>
-          </h1>
+          <Link href={"/potensi"}>
+            <h1 className="underlined-text mb-[30px]">
+              <strong>POTENSI KAMPUNG</strong>
+            </h1>
+          </Link>
 
           <div
             className={`text-center px-6 lg:px-8 ${
@@ -401,9 +402,11 @@ export default function Example() {
         </div>
         {/* DATA PENDUDUK */}
         <div className=" text-center md:px-6  pt-5 lg:px-6 bg-[#0B3147] text-white mt-6 pb-[100px]">
-          <h1 className="underlined-berita mb-5">
-            <strong>DATA PENDUDUK</strong>
-          </h1>
+          <Link href={"/potensi"}>
+            <h1 className="underlined-berita mb-5">
+              <strong>DATA PENDUDUK</strong>
+            </h1>
+          </Link>
           <div
             className={
               isSlideScreen
@@ -430,36 +433,64 @@ export default function Example() {
             ))}
           </div>
         </div>
+        {/* STRUKTUR ORGANISASI */}
+        <div className="text-center pt-3">
+          {" "}
+          <Link href={"/struktur-organisasi"}>
+            <h1 className="underlined-text mb-5 ">
+              <strong>STRUKTUR ORGANISASI</strong>
+            </h1>
+          </Link>
+          <Image src={Gambar7} alt="" className="w-full px-1" />
+        </div>
         {/* GALERI */}
-        <div className=" text-center   pt-6  text-black  pb-[100px]">
-          <h1 className="underlined-text mb-5">
-            <strong>GALERI</strong>
-          </h1>
-          <div>
-            <div className="flex max-md:flex-col items-center ">
-              <Image src={Gambar1} alt="" className="w-[500px]" />
-              <p className="md:text-left text-center m-auto">
+        <div className=" text-center   pt-6  text-black bg-[#0B3147]  pb-[100px]">
+          <Link href={"/galeri"}>
+            <h1 className="underlined-berita text-white mb-5">
+              <strong>GALERI</strong>
+            </h1>
+          </Link>
+          <div className="text-white">
+            <div className="flex max-lg:flex-col items-start ">
+              <Image
+                src={Gambar1}
+                alt=""
+                className="w-[700px] rounded-r-[500px]"
+              />
+              <p className="text-left lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
             </div>
-            <div className="flex flex-row-reverse py-5  max-md:flex-col items-center">
-              <Image src={Gambar5} alt="" className="w-[500px]" />
-              <p className="text-right max-md:text-center m-auto">
+            <div className="flex flex-row-reverse py-5 max-lg:flex-col items-end">
+              <Image
+                src={Gambar5}
+                alt=""
+                className="w-[700px] rounded-l-[500px]"
+              />
+              <p className="text-right  lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
             </div>
-            <div className="flex  max-md:flex-col pb-5 items-center">
-              <Image src={Gambar4} alt="" className="w-[500px]" />
-              <p className="md:text-left text-center m-auto">
+            <div className="flex  max-lg:flex-col pb-5 items-start">
+              <Image
+                src={Gambar4}
+                alt=""
+                className="w-[700px] rounded-r-[500px]"
+              />
+              <p className="text-left lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
             </div>
-            <div className="flex flex-row-reverse  max-md:flex-col  items-center">
-              <Image src={Gambar7} alt="" className="w-[500px]" />
-              <p className="text-right max-md:text-center m-auto">
+            <div className="flex flex-row-reverse max-lg:flex-col  items-end">
+              <Image
+                src={Gambar6}
+                alt=""
+                className="w-[700px] rounded-l-[500px]"
+              />
+              <p className="text-right  lg:m-auto p-5">
                 Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
                 ipsum. <br /> <strong>Kacang</strong>
               </p>
