@@ -13,14 +13,14 @@ const navigation = [
   { name: "Potensi Kampung", href: "potensi" },
   { name: "Data Penduduk", href: "data-penduduk" },
   { name: "Galeri", href: "galeri" },
-  { name: "Struktur Pemerintahan ", href: "struktur-pemerintahan" },
+  { name: "Struktur Pemerintahan ", href: "struktur-organisasi" },
 ];
 
 function Potensi() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <div>
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="absolute inset-x-0 top-0 z-50 bg-[#0B3147]">
         <nav
           className="flex items-center justify-end p-6 lg:px-8"
           aria-label="Global"
@@ -40,7 +40,7 @@ function Potensi() {
               <Link
                 key={item.name}
                 href={`/${item.href}`}
-                className="text-sm font-semibold leading-6 text-black"
+                className="text-sm font-semibold leading-6 text-white"
               >
                 {item.name}
               </Link>
@@ -91,24 +91,56 @@ function Potensi() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="mt-[70px] px-6">
-        <h1>
+      <div className="mt-[100px] px-6">
+        <h1 className="text-[30px] underlined-text">
           <strong>Potensi Kampung Siwi</strong>
         </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa ipsum.
-          Diam habitant a ultrices neque suscipit eget at. Lectus quam maecenas
-          volutpat ipsum praesent praesent facilisis. Molestie ligula convallis
-          enim quam.
-        </p>
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa ipsum.
-          Diam habitant a ultrices neque suscipit eget at. Lectus quam maecenas
-          volutpat ipsum praesent praesent facilisis. Molestie ligula convallis
-          enim quam.
-        </p>
-        <Image src={Gambar3} alt="" className="w-[600px]" />
+        <div className="flex max-sm:flex-col py-4 ">
+          <Image
+            src={Gambar2}
+            alt=""
+            className="sm:w-1/2 rounded-tr-[100px] rounded-bl-[100px] max-sm:rounded-[50px] sm:shadow-2xl"
+          />
+          <p className="lg:w-1/2 md:m-auto px-5">
+            <strong>Kacang Tanah</strong>
+            <br />
+            Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
+            ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus quam
+            maecenas volutpat ipsum praesent praesent facilisis. Molestie ligula
+            convallis enim quam.
+          </p>
+        </div>
+        <div className="flex py-4 max-sm:flex-col-reverse ">
+          <p className="lg:w-1/2 md:m-auto px-5 text-right max-sm:text-left">
+            <strong>Kali Panas</strong>
+            <br />
+            Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
+            ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus quam
+            maecenas volutpat ipsum praesent praesent facilisis. Molestie ligula
+            convallis enim quam.
+          </p>
+          <Image
+            src={Gambar3}
+            alt=""
+            className="sm:w-1/2 rounded-tl-[100px] rounded-br-[100px] max-sm:rounded-[50px] sm:shadow-2xl"
+          />
+        </div>
+        <div className="flex py-4 max-sm:flex-col">
+          <Image
+            src={Gambar3}
+            alt=""
+            className="sm:w-1/2 rounded-tr-[100px] rounded-bl-[100px] max-sm:rounded-[50px] sm:shadow-2xl"
+          />
+
+          <p className="lg:w-1/2 md:m-auto px-5">
+            <strong>Tanah Subur</strong>
+            <br />
+            Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
+            ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus quam
+            maecenas volutpat ipsum praesent praesent facilisis. Molestie ligula
+            convallis enim quam.
+          </p>
+        </div>
       </div>
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
         <div className="w-full md:w-2/3 ">

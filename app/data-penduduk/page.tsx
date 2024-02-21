@@ -12,7 +12,7 @@ const navigation = [
   { name: "Potensi Kampung", href: "potensi" },
   { name: "Data Penduduk", href: "data-penduduk" },
   { name: "Galeri", href: "galeri" },
-  { name: "Struktur Pemerintahan ", href: "struktur-pemerintahan" },
+  { name: "Struktur Pemerintahan ", href: "struktur-organisasi" },
 ];
 
 function DataPenduduk() {

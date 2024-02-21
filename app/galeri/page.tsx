@@ -7,20 +7,52 @@ import Image from "next/image";
 
 import Gambar2 from "../images/GAMBAR 2.jpg";
 import Gambar3 from "../images/GAMBAR 3.jpg";
+import Image1 from "../images/Rectangle 3.png";
+import Image2 from "../images/Rectangle 6.png";
+import Image3 from "../images/Rectangle 8.png";
+import Image4 from "../images/Rectangle 9.png";
+import Image5 from "../images/Rectangle 10.png";
+
+import Masonry from "react-masonry-css";
 
 const navigation = [
   { name: "Beranda", href: "" },
   { name: "Potensi Kampung", href: "potensi" },
   { name: "Data Penduduk", href: "data-penduduk" },
   { name: "Galeri", href: "galeri" },
-  { name: "Struktur Pemerintahan ", href: "struktur-pemerintahan" },
+  { name: "Struktur Pemerintahan ", href: "struktur-organisasi" },
+];
+
+const galeri = [
+  { id: "1", image: Image1, title: "Makan", details: "Nasi" },
+  { id: "2", image: Image2, title: "Makan", details: "Nasi" },
+  { id: "3", image: Image3, title: "Makan", details: "Nasi" },
+  { id: "7", image: Image2, title: "Makan", details: "Nasi" },
+  { id: "5", image: Image5, title: "Makan", details: "Nasi" },
+  { id: "6", image: Image1, title: "Makan", details: "Nasi" },
+  { id: "4", image: Image4, title: "Makan", details: "Nasi" },
+  { id: "11", image: Image1, title: "Makan", details: "Nasi" },
+  { id: "8", image: Image3, title: "Makan", details: "Nasi" },
+  { id: "9", image: Image4, title: "Makan", details: "Nasi" },
+  { id: "10", image: Image5, title: "Makan", details: "Nasi" },
+  { id: "12", image: Image2, title: "Makan", details: "Nasi" },
+  { id: "15", image: Image5, title: "Makan", details: "Nasi" },
+  { id: "13", image: Image3, title: "Makan", details: "Nasi" },
+  { id: "14", image: Image4, title: "Makan", details: "Nasi" },
 ];
 
 function Galeri() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const breakpointColumns = {
+    default: 6, // Number of columns by default
+    1100: 5, // Number of columns on larger screens
+    700: 3, // Number of columns on medium screens
+    500: 1, // Number of columns on small screens
+  };
+
   return (
-    <div>
-      <header className="absolute inset-x-0 top-0 z-50">
+    <div className="bg-[#0B3147]">
+      <header className="absolute inset-x-0 top-0 z-50 bg-[#0B3147]">
         <nav
           className="flex items-center justify-end p-6 lg:px-8"
           aria-label="Global"
@@ -40,7 +72,7 @@ function Galeri() {
               <Link
                 key={item.name}
                 href={`/${item.href}`}
-                className="text-sm font-semibold leading-6 text-black"
+                className="text-sm font-semibold leading-6 text-white"
               >
                 {item.name}
               </Link>
@@ -91,38 +123,28 @@ function Galeri() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="mt-[70px] px-6 columns-4 gap-3 w-[1200px] mx-auto space-y-3 pb-28">
-       
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
-        <Image src={Gambar2} alt="" className="w-[600px] " />
-        
-        <Image src={Gambar3} alt="" className="w-[600px]" />
+      <div className="pt-[100px] px-6">
+        <h1 className="text-[30px] underlined-berita text-white">
+          <strong>GALERI</strong>
+        </h1>
+        {/* Masonry Grid */}
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="mt-[100px] my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {galeri.map((data) => (
+            <div key={data.id} className="mb-6 relative group">
+              <Image src={data.image} alt="" className="rounded-lg" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition-opacity rounded-lg">
+                <div className="text-white text-center">
+                  <p className="text-lg font-semibold">{data.title}</p>
+                  <p className="text-white">{data.details}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Masonry>
       </div>
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
         <div className="w-full md:w-2/3 ">

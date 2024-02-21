@@ -22,7 +22,7 @@ const navigation = [
   { name: "Potensi Kampung", href: "potensi" },
   { name: "Data Penduduk", href: "data-penduduk" },
   { name: "Galeri", href: "galeri" },
-  { name: "Struktur Pemerintahan ", href: "struktur-pemerintahan" },
+  { name: "Struktur Pemerintahan ", href: "struktur-organisasi" },
 ];
 
 interface AccordionProps {
@@ -331,8 +331,8 @@ export default function Example() {
               <p className="mt-6 text-lg leading-8 text-white line-clamp-3 sm:line-clamp-none">
                 Kampung Siwi merupakan salah satu Kampung dari tujuh kampung
                 dalam wilayah administratif pemerintahan Distrik Momi Waren
-                Kabupaten Manokwari Selatan. Kampung initerbagi dalam enam Dusun
-                yaitu : Dusun Siwi 1, Dusun Lohoy, Dusun Beyangau, Dusun
+                Kabupaten Manokwari Selatan. Kampung ini terbagi dalam enam
+                Dusun yaitu : Dusun Siwi 1, Dusun Lohoy, Dusun Beyangau, Dusun
                 Siwimer, Dusun Saugemes, dan Dusun Siwi Gunung.
               </p>
               <button className=" p-2 bg-[#0B3147] text-white w-[200px] rounded-[50px]">
@@ -429,10 +429,10 @@ export default function Example() {
             ))}
           </div>
         </div>
-        {/* STRUKTUR PEMERINTAHAN */}
+        {/* STRUKTUR ORGANISASI */}
         <div className="text-center pt-3">
           {" "}
-          <Link href={"/struktur-pemerintahan"}>
+          <Link href={"/struktur-organisasi"}>
             <h1 className="underlined-text mb-5 ">
               <strong>STRUKTUR ORGANISASI</strong>
             </h1>

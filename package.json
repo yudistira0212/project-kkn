@@ -9,11 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
+    "@mui/lab": "^5.0.0-alpha.165",
+    "@mui/material": "^5.15.10",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-masonry-css": "^1.0.16",
     "react-slick": "^0.30.1",
     "slick-carousel": "^1.8.1"
   },
