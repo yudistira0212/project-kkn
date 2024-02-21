@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -27,6 +27,9 @@ const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50"]; // Choose your colo
 
 function DataPenduduk() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    useEffect(() => {
+      setMobileMenuOpen(false);
+    }, []);
 
   const chartData = {
     labels: dataPenduduk.map((item) => item.name),

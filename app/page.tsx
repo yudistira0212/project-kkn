@@ -123,6 +123,10 @@ export default function Example() {
   const [isFooterScreen, setIsFooterScreen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, []);
+
   const handleClick = (index: number | null) => {
     setActiveIndex((prevIndex: number | null) =>
       prevIndex === index ? null : index

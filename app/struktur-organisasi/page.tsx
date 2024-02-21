@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -16,6 +16,9 @@ const navigation = [
 
 function StrukturOrganisasi() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, []);
   return (
     <div>
       <header className="absolute inset-x-0 top-0 z-50 bg-[#0B3147]">

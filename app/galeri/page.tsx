@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -43,6 +43,10 @@ const galeri = [
 
 function Galeri() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, []);
   const breakpointColumns = {
     default: 6, // Number of columns by default
     1100: 5, // Number of columns on larger screens
@@ -103,7 +107,7 @@ function Galeri() {
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
-                      href={item.href}
+                      href={`/${item.href}`}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
