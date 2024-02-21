@@ -108,11 +108,11 @@ function DataPenduduk() {
         <h1 className="text-[30px] underlined-text">
           <strong>Data Penduduk </strong>
         </h1>
-        <div className="flex max-sm:flex-col py-4 ">
-          <div className="mt-6 w-[500px] h-[500px]">
+        <div className="flex max-md:flex-col py-4 ">
+          <div className="mt-6 md:w-[500px] md:h-[500px] flex justify-center">
             <Doughnut data={chartData} />
           </div>
-          <p className="lg:w-1/2 md:m-auto px-5 text-left">
+          <p className="lg:w-1/2 md:m-auto px-5 text-left mt-5">
             <strong>Data Penduduk</strong>
             <br />
             Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
