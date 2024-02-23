@@ -43,7 +43,7 @@ function DataPenduduk() {
   };
 
   return (
-    <div className="h-full">
+    <div>
       <header className="absolute inset-x-0 top-0 z-50 bg-[#0B3147]">
         <nav
           className="flex items-center justify-end p-6 lg:px-8"
