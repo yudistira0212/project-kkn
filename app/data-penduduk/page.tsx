@@ -4,7 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
-import Gambar2 from "../images/GAMBAR 2.jpg";
+import Image6 from "../images/Lambang_Kabupaten_Manokwari_Selatan.png";
 import { Doughnut } from "react-chartjs-2"; // Import Doughnut from react-chartjs-2
 import "chart.js/auto";
 
@@ -27,9 +27,9 @@ const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50"]; // Choose your colo
 
 function DataPenduduk() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    useEffect(() => {
-      setMobileMenuOpen(false);
-    }, []);
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, []);
 
   const chartData = {
     labels: dataPenduduk.map((item) => item.name),
@@ -129,13 +129,18 @@ function DataPenduduk() {
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
         <div className="w-full md:w-2/3 ">
           <h1 className=" font-semibold">Kampung Siwi</h1>
-          Jl. Raya Beji No. 13 Desa Beji Kec. Banjarmangu Kode Pos 53452
-          <br />
-          Kecamatan Banjarmangu Kabupaten Banjarnegara Provinsi Jawa Tengah Kode
-          Pos 53452 <br />
-          Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+          <p>
+            {" "}
+            Kecamatan Momi Waren, Kabupaten Manokwari Selatan 98322
+            <br />
+            Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+          </p>
+          <Image src={Image6} alt="" className="w-[80px] mt-2" />
         </div>
         <div className="md:w-1/3 w-full py-3 ">
+          <h1 className="flex md:justify-end items-center font-semibold">
+            Sosial Media
+          </h1>
           <div className="flex md:justify-end items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
