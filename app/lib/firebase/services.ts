@@ -36,7 +36,7 @@ export const retrieveData = async (collectionName: string) => {
 
 export const retrieveDataById = async (collectionName: string, id: string) => {
   const snapshot = await getDoc(doc(firestore, collectionName, id));
-  const data = snapshot.data;
+  const data = snapshot.data(); // Panggil .data() untuk mendapatkan data
 
   return data;
 };
@@ -174,25 +174,41 @@ export const updateImage = async (
 };
 
 export const createProfil = async (
-  dataBerita: {
+  dataProfil: {
     title: string;
-    // content: string;
     alamat: string;
     deskripsi: string;
-    img: { name: string; url: string };
+    email: string;
+    telephone: string;
+    image: { name: string; url: string };
   },
+  img: File,
   callback: Function
 ) => {
-  // Buat referensi ke koleksi "berita" di Firestore
-  const beritaCollectionRef = collection(firestore, "profil-kampung");
+  const imgRef = ref(storage, `image/profilKampung`);
 
-  // Tambahkan dokumen berita ke Firestore
-  const beritaDocRef = await addDoc(beritaCollectionRef, dataBerita)
-    .then(() => {
-      callback(true, "Data berita berhasil di input");
-      // return "Data berita berhasil di input";
-    })
-    .catch(() => {
-      callback(false, "Data berita gagal di input");
-    });
+  // Upload gambar
+  await uploadBytes(imgRef, img);
+
+  // Dapatkan URL unduhan gambar
+  const url = await getDownloadURL(imgRef);
+
+  if (url) {
+    dataProfil.image.name = img.name;
+    dataProfil.image.url = url;
+  }
+
+  // Buat referensi ke koleksi "dataKampung" di Firestore
+  const dataKampungCollectionRef = collection(firestore, "dataKampung");
+
+  try {
+    // Buat referensi ke dokumen "profil" di dalam koleksi "dataKampung"
+    const profilDocRef = doc(dataKampungCollectionRef, "profil");
+
+    // Tambahkan dokumen profil ke dalam koleksi "dataKampung/profil" di Firestore
+    await setDoc(profilDocRef, dataProfil);
+    callback(true, "Data profil berhasil diinput");
+  } catch (error: any) {
+    callback(false, "Gagal memasukkan data profil: " + error.message);
+  }
 };

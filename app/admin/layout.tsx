@@ -120,40 +120,36 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
           >
             <div className="flex items-center justify-between px-4 py-2 border-b">
               <h2 className="text-xl font-semibold">Menu</h2>
-              {/* <button onClick={handleSidebarToggle}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-gray-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M13.293 5.293a1 1 0 011.414 1.414L11.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button> */}
             </div>
             <div className="flex flex-col gap-2 ">
-              <Link href="#">
+              <Link href="/admin/profil">
                 <p className="block py-3 ps-4  text-gray-800 hover:text-gray-100 hover:bg-gray-500 rounded-sm">
                   Profil Desa
                 </p>
               </Link>
-              <Link href="#">
+              <Link href="/admin/potensi">
                 <p className="block py-3 ps-4 text-gray-800 hover:text-gray-100 hover:bg-gray-500 rounded-sm">
-                  Potensi Desa
+                  Potensi Kampung
                 </p>
               </Link>
-              <Link href="#">
+              <Link href="/admin/data-penduduk">
                 <p className="block py-3 ps-4 text-gray-800 hover:text-gray-100 hover:bg-gray-500 rounded-sm">
                   Data Penduduk
                 </p>
               </Link>
-              <Link href="#">
+              <Link href="/admin/galeri">
                 <p className="block py-3 ps-4 text-gray-800 hover:text-gray-100 hover:bg-gray-500 rounded-sm">
-                  Menu 4
+                  Galeri
+                </p>
+              </Link>
+              <Link href="/admin/struktur">
+                <p className="block py-3 ps-4 text-gray-800 hover:text-gray-100 hover:bg-gray-500 rounded-sm">
+                  Struktur Organisasi
+                </p>
+              </Link>
+              <Link href="/admin/kontak">
+                <p className="block py-3 ps-4 text-gray-800 hover:text-gray-100 hover:bg-gray-500 rounded-sm">
+                  kontak
                 </p>
               </Link>
             </div>
