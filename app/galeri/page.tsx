@@ -12,6 +12,7 @@ import Image2 from "../images/Rectangle 6.png";
 import Image3 from "../images/Rectangle 8.png";
 import Image4 from "../images/Rectangle 9.png";
 import Image5 from "../images/Rectangle 10.png";
+import Image6 from "../images/Lambang_Kabupaten_Manokwari_Selatan.png";
 
 import Masonry from "react-masonry-css";
 
@@ -146,13 +147,17 @@ function Galeri() {
         {" "}
         <div className="w-full md:w-2/3 ">
           <h1 className=" font-semibold">Kampung Siwi</h1>
-          Jl. Raya Beji No. 13 Desa Beji Kec. Banjarmangu Kode Pos 53452
-          <br />
-          Kecamatan Banjarmangu Kabupaten Banjarnegara Provinsi Jawa Tengah Kode
-          Pos 53452 <br />
-          Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+          <p>
+            Kecamatan Momi Waren, Kabupaten Manokwari Selatan 98322
+            <br />
+            Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+          </p>
+          <Image src={Image6} alt="" className="w-[80px] mt-2" />
         </div>
         <div className="md:w-1/3 w-full py-3 ">
+          <h1 className="flex md:justify-end items-center font-semibold">
+            Sosial Media
+          </h1>
           <div className="flex md:justify-end items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -4,7 +4,100 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
-import Gambar7 from "../images/Struktur Organisasi.png";
+import Image6 from "../images/Lambang_Kabupaten_Manokwari_Selatan.png";
+import ReactFlow, { Controls } from "reactflow";
+
+import "reactflow/dist/style.css";
+
+const edges = [
+  { id: "1-2", source: "1", target: "2", type: "step" },
+  { id: "1-3", source: "1", target: "3", type: "step" },
+  { id: "1-4", source: "1", target: "4", type: "step" },
+  { id: "1-5", source: "1", target: "5", type: "step" },
+  { id: "1-6", source: "1", target: "6", type: "step" },
+  { id: "1-7", source: "1", target: "7", type: "step" },
+  { id: "1-8", source: "1", target: "8", type: "step" },
+  { id: "1-9", source: "1", target: "9", type: "step" },
+  { id: "1-10", source: "1", target: "10", type: "step" },
+  { id: "1-11", source: "1", target: "11", type: "step" },
+  { id: "2-12", source: "2", target: "12", type: "step" },
+  { id: "2-13", source: "2", target: "13", type: "step" },
+  { id: "2-14", source: "2", target: "14", type: "step" },
+];
+
+const nodes = [
+  {
+    id: "1",
+    data: { label: "Kepala Kampung \n DEREK L. AINUSI, S.H " },
+    position: { x: 700, y: 0 },
+    type: "input",
+  },
+  {
+    id: "2",
+    data: { label: "Sekretaris \n YOEL TRIRBO" },
+    position: { x: 900, y: 105 },
+  },
+  {
+    id: "3",
+    data: { label: "KASI PEMERINTAHAN \n AMOS AINUSI " },
+    position: { x: 500, y: 150 },
+  },
+  {
+    id: "4",
+    data: { label: "KASI KESEJAHTERAAN \n YOEL TRIRBO" },
+    position: { x: 300, y: 150 },
+  },
+  {
+    id: "5",
+    data: { label: "KASI PELAYAN \n SARMAN TRIRBO" },
+    position: { x: 100, y: 150 },
+  },
+  {
+    id: "6",
+    data: { label: "DUSUN SIBEJ \n ULIS AINUSI" },
+    position: { x: 100, y: 550 },
+  },
+  {
+    id: "7",
+    data: { label: "DUSUN BEYANGAU \n MESAK MANDACAN" },
+    position: { x: 300, y: 550 },
+  },
+  {
+    id: "8",
+    data: { label: "DUSUN LOHOY \n BOMAN TRIRBO" },
+    position: { x: 500, y: 550 },
+  },
+  {
+    id: "9",
+    data: { label: "DUSUN SIWI MER \n YOKAB TRIRBO" },
+    position: { x: 700, y: 550 },
+  },
+  {
+    id: "10",
+    data: { label: "DUSUN SAUGEMES \n ALFONS TRIRBO" },
+    position: { x: 900, y: 550 },
+  },
+  {
+    id: "11",
+    data: { label: "SIWI GUNUNG \n LEVINUS IBA" },
+    position: { x: 1100, y: 550 },
+  },
+  {
+    id: "12",
+    data: { label: "KAUR TU & UMUM \n LEWI AINUSI, S.E " },
+    position: { x: 800, y: 210 },
+  },
+  {
+    id: "13",
+    data: { label: "KAUR KEUANGAN \n YOHANES TRIRBO, S.H " },
+    position: { x: 970, y: 210 },
+  },
+  {
+    id: "14",
+    data: { label: "KAUR PERENCANAAN \n KELIOPAS TRIRBO " },
+    position: { x: 1150, y: 210 },
+  },
+];
 
 const navigation = [
   { name: "Beranda", href: "" },
@@ -19,6 +112,7 @@ function StrukturOrganisasi() {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, []);
+
   return (
     <div>
       <header className="absolute inset-x-0 top-0 z-50 bg-[#0B3147]">
@@ -72,7 +166,7 @@ function StrukturOrganisasi() {
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
-                      href={item.href}
+                      href={`/${item.href}`}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
@@ -88,7 +182,7 @@ function StrukturOrganisasi() {
         <h1 className="text-[30px] underlined-text">
           <strong>Struktur Organisasi </strong>
         </h1>
-        <div className="md:flex justify-evenly pt-5">
+        {/* <div className="md:flex justify-evenly pt-5">
           <div className="px-4">
             <div className="bg-[#0B3147] rounded-xl mt-2 w-full h-[100px] flex items-center justify-center">
               <p className="text-white  ">VISI</p>
@@ -111,20 +205,33 @@ function StrukturOrganisasi() {
               ligula convallis enim quam.
             </p>
           </div>
+        </div> */}
+        <div className="w-full h-[510px] px-3 mb-5 mt-5">
+          <ReactFlow
+            fitView
+            nodes={nodes}
+            edges={edges}
+            className="border-4 border-[#0B3147]"
+          >
+            <Controls />
+          </ReactFlow>
         </div>
-        <Image src={Gambar7} alt="" className="w-full px-1" />
       </div>
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
         {" "}
         <div className="w-full md:w-2/3 ">
           <h1 className=" font-semibold">Kampung Siwi</h1>
-          Jl. Raya Beji No. 13 Desa Beji Kec. Banjarmangu Kode Pos 53452
-          <br />
-          Kecamatan Banjarmangu Kabupaten Banjarnegara Provinsi Jawa Tengah Kode
-          Pos 53452 <br />
-          Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+          <p>
+            Kecamatan Momi Waren, Kabupaten Manokwari Selatan 98322
+            <br />
+            Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+          </p>
+          <Image src={Image6} alt="" className="w-[80px] mt-2" />
         </div>
         <div className="md:w-1/3 w-full py-3 ">
+          <h1 className="flex md:justify-end items-center font-semibold">
+            Sosial Media
+          </h1>
           <div className="flex md:justify-end items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"

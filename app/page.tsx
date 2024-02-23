@@ -12,7 +12,9 @@ import Gambar3 from "./images/GAMBAR 3.jpg";
 import Gambar4 from "./images/GAMBAR 4.jpg";
 import Gambar5 from "./images/GAMBAR 5.jpg";
 import Gambar6 from "./images/GAMBAR 6.jpg";
-import Gambar7 from "./images/Struktur Organisasi.png";
+import ReactFlow, { Controls } from "reactflow";
+import "reactflow/dist/style.css";
+import Image6 from "./images/Lambang_Kabupaten_Manokwari_Selatan.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -116,6 +118,114 @@ const dataPenduduk = [
   },
 ];
 
+const data = [
+  {
+    question: "Apa itu webste Kampung Siwi?",
+    answer:
+      "Platform informasi daring yang menyajikan berbagai potensi dan peluang di Kampung Siwi, memberikan akses dan wawasan kepada pengguna untuk pengembangan ilmu dan profesionalisme.",
+  },
+  {
+    question: "Halaman apa saja yang dimiliki website Kampung Siwi?",
+    answer:
+      "Terdapat beberapa Halaman yang tersedia seperti Potensi Kampung, Data Penduduk, Struktur Organisasi, dan Galeri.",
+  },
+  {
+    question: "Mengapa harus menggunakan website Kampung Siwi?",
+    answer:
+      "Dengan menggunakan website Kampung Siwi kita bisa mengetahui lebih jauh terkait apa yang ada di Kampung Siwi seperti potensi, struktur, jumlah penduduk, dsb.",
+  },
+];
+
+const edges = [
+  { id: "1-2", source: "1", target: "2", type: "step" },
+  { id: "1-3", source: "1", target: "3", type: "step" },
+  { id: "1-4", source: "1", target: "4", type: "step" },
+  { id: "1-5", source: "1", target: "5", type: "step" },
+  { id: "1-6", source: "1", target: "6", type: "step" },
+  { id: "1-7", source: "1", target: "7", type: "step" },
+  { id: "1-8", source: "1", target: "8", type: "step" },
+  { id: "1-9", source: "1", target: "9", type: "step" },
+  { id: "1-10", source: "1", target: "10", type: "step" },
+  { id: "1-11", source: "1", target: "11", type: "step" },
+  { id: "2-12", source: "2", target: "12", type: "step" },
+  { id: "2-13", source: "2", target: "13", type: "step" },
+  { id: "2-14", source: "2", target: "14", type: "step" },
+];
+
+const nodes = [
+  {
+    id: "1",
+    data: { label: "Kepala Kampung \n DEREK L. AINUSI, S.H " },
+    position: { x: 700, y: 0 },
+    type: "input",
+  },
+  {
+    id: "2",
+    data: { label: "Sekretaris \n YOEL TRIRBO" },
+    position: { x: 900, y: 105 },
+  },
+  {
+    id: "3",
+    data: { label: "KASI PEMERINTAHAN \n AMOS AINUSI " },
+    position: { x: 500, y: 150 },
+  },
+  {
+    id: "4",
+    data: { label: "KASI KESEJAHTERAAN \n YOEL TRIRBO" },
+    position: { x: 300, y: 150 },
+  },
+  {
+    id: "5",
+    data: { label: "KASI PELAYAN \n SARMAN TRIRBO" },
+    position: { x: 100, y: 150 },
+  },
+  {
+    id: "6",
+    data: { label: "DUSUN SIBEJ \n ULIS AINUSI" },
+    position: { x: 100, y: 550 },
+  },
+  {
+    id: "7",
+    data: { label: "DUSUN BEYANGAU \n MESAK MANDACAN" },
+    position: { x: 300, y: 550 },
+  },
+  {
+    id: "8",
+    data: { label: "DUSUN LOHOY \n BOMAN TRIRBO" },
+    position: { x: 500, y: 550 },
+  },
+  {
+    id: "9",
+    data: { label: "DUSUN SIWI MER \n YOKAB TRIRBO" },
+    position: { x: 700, y: 550 },
+  },
+  {
+    id: "10",
+    data: { label: "DUSUN SAUGEMES \n ALFONS TRIRBO" },
+    position: { x: 900, y: 550 },
+  },
+  {
+    id: "11",
+    data: { label: "SIWI GUNUNG \n LEVINUS IBA" },
+    position: { x: 1100, y: 550 },
+  },
+  {
+    id: "12",
+    data: { label: "KAUR TU & UMUM \n LEWI AINUSI, S.E " },
+    position: { x: 800, y: 210 },
+  },
+  {
+    id: "13",
+    data: { label: "KAUR KEUANGAN \n YOHANES TRIRBO, S.H " },
+    position: { x: 970, y: 210 },
+  },
+  {
+    id: "14",
+    data: { label: "KAUR PERENCANAAN \n KELIOPAS TRIRBO " },
+    position: { x: 1150, y: 210 },
+  },
+];
+
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -194,7 +304,7 @@ export default function Example() {
         {data.map((item, index) => (
           <div key={index} className="mb-2 w-auto">
             <div
-              className="bg-[#002B34] bg-opacity-50 p-2 cursor-pointer rounded-md "
+              className="bg-[#002B34] bg-opacity-50 p-2 cursor-pointer  "
               onClick={() => handleClick(index)}
             >
               <h2 className="text-lg text-left font-semibold">
@@ -202,7 +312,7 @@ export default function Example() {
               </h2>
             </div>
             {activeIndex === index && (
-              <div className="bg-[#002B34] p-2 bg-opacity-50">
+              <div className="bg-[#002B34] p-2 bg-opacity-50 ">
                 <p className="text-white text-left">{item.answer}</p>
               </div>
             )}
@@ -211,29 +321,6 @@ export default function Example() {
       </div>
     );
   };
-
-  const data = [
-    {
-      question: "Apa itu webste Kampung Siwi?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Accumsan integer mollis proin nunc. Varius morbi dui consequat feugiat convallis sed at. Nunc nunc praesent sagittis sit. Tincidunt sodales duis mi nibh senectus.",
-    },
-    {
-      question: "Fitur apa saja yang dimiliki website Kampung Siwi?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Accumsan integer mollis proin nunc. Varius morbi dui consequat feugiat convallis sed at. Nunc nunc praesent sagittis sit. Tincidunt sodales duis mi nibh senectus.",
-    },
-    {
-      question: "Mengapa harus menggunakan website Kampung Siwi?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Accumsan integer mollis proin nunc. Varius morbi dui consequat feugiat convallis sed at. Nunc nunc praesent sagittis sit. Tincidunt sodales duis mi nibh senectus.",
-    },
-    {
-      question: "Keuntungan menggunakan website Kampung Siwi?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Accumsan integer mollis proin nunc. Varius morbi dui consequat feugiat convallis sed at. Nunc nunc praesent sagittis sit. Tincidunt sodales duis mi nibh senectus.",
-    },
-  ];
 
   return (
     <div className="bg-white ">
@@ -361,41 +448,43 @@ export default function Example() {
               isSmallScreen ? "flex-col" : "flex justify-around items-center"
             }`}
           >
-            <div className="flex flex-col">
-              <p className="lg:w-[400px] xl:w-[400px] text-left ">
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
-                quam maecenas volutpat ipsum praesent praesent facilisis.
-                Molestie ligula convallis enim quam.
+            <div className="flex flex-col md:w-[300px]">
+              <p className=" text-justify mb-1">
+                Kampung Siwi dikenal dengan hasil panen kacang yang melimpah,
+                didukung oleh tanah yang subur. Keberlimpahan ini menjadikan
+                kampung tersebut sebagai tempat yang cocok untuk bercocok tanam.
               </p>
               <Image
                 src={Gambar2}
                 alt=""
-                className="w-full md:w-[300px]  xl:w-[400px] sm:h-[400px] object-cover object-center"
+                className="w-full md:w-[300px]  xl:w-[300px] sm:h-[300px] object-cover object-center rounded-lg"
               />
             </div>
 
             {isSmallScreen ? "" : <div className="vertical-line py-6" />}
 
-            <div className={`${isSmallScreen ? "flex flex-col-reverse" : ""}`}>
+            <div
+              className={`md:w-[300px] ${
+                isSmallScreen ? "flex flex-col-reverse " : ""
+              }`}
+            >
               <div className={isSmallScreen ? "" : "flex justify-end"}>
                 <Image
                   src={Gambar3}
                   alt=""
-                  className="w-full md:w-[300px]  xl:w-[400px] sm:h-[400px] object-cover object-center"
+                  className="w-full md:w-[300px]  xl:w-[300px] sm:h-[300px] object-cover object-center rounded-lg"
                 />
               </div>
               <p
                 className={`${
-                  isSmallScreen
-                    ? "lg:w-[400px] xl:w-[400px] text-left"
-                    : "lg:w-[400px] xl:w-[400px] text-right"
+                  isSmallScreen ? " text-justify mt-5 mb-1" : " text-justify"
                 }`}
               >
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
-                quam maecenas volutpat ipsum praesent praesent facilisis.
-                Molestie ligula convallis enim quam.
+                Kali panas di Kampung Siwi diminati oleh masyarakat setempat dan
+                pengunjung luar karena air panasnya yang unik. Lokasi yang mudah
+                diakses menambah popularitasnya sebagai destinasi wisata.
+                Keberadaan air panas di sepanjang kali menciptakan daya tarik
+                khusus.
               </p>
             </div>
           </div>
@@ -441,12 +530,21 @@ export default function Example() {
               <strong>STRUKTUR ORGANISASI</strong>
             </h1>
           </Link>
-          <Image src={Gambar7} alt="" className="w-full px-1" />
+          <div className="w-full h-[510px] px-10 mb-5">
+            <ReactFlow
+              fitView
+              nodes={nodes}
+              edges={edges}
+              className="border-4 border-[#0B3147]"
+            >
+              <Controls />
+            </ReactFlow>
+          </div>
         </div>
         {/* GALERI */}
         <div className=" text-center   pt-6  text-black bg-[#0B3147]  pb-[100px]">
           <Link href={"/galeri"}>
-            <h1 className="underlined-berita text-white mb-5">
+            <h1 className="underlined-berita text-white mb-6">
               <strong>GALERI</strong>
             </h1>
           </Link>
@@ -458,8 +556,8 @@ export default function Example() {
                 className="w-[700px] rounded-r-[500px]"
               />
               <p className="text-left lg:m-auto p-5">
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. <br /> <strong>Kacang</strong>
+                Memanen kacang bersama Pak Martinus (Tengah) dengan anaknya di
+                kebun miliknya <br /> -<strong>Sahrul</strong>
               </p>
             </div>
             <div className="flex flex-row-reverse py-5 max-lg:flex-col items-end">
@@ -469,8 +567,10 @@ export default function Example() {
                 className="w-[700px] rounded-l-[500px]"
               />
               <p className="text-right  lg:m-auto p-5">
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. <br /> <strong>Kacang</strong>
+                Pelatihan penggunaan website bersama dengan Pak Derek Ainusi{" "}
+                <br />
+                (Kepala Desa, di sebelah kanan).
+                <br /> -<strong>Rahmat</strong>
               </p>
             </div>
             <div className="flex  max-lg:flex-col pb-5 items-start">
@@ -480,8 +580,9 @@ export default function Example() {
                 className="w-[700px] rounded-r-[500px]"
               />
               <p className="text-left lg:m-auto p-5">
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. <br /> <strong>Kacang</strong>
+                Pengajaran Materi ICT (Information, Communication, and
+                Technology) ke anak-anak kelas 4 dan kelas 5 <br /> -
+                <strong>Joshua</strong>
               </p>
             </div>
             <div className="flex flex-row-reverse max-lg:flex-col  items-end">
@@ -491,8 +592,9 @@ export default function Example() {
                 className="w-[700px] rounded-l-[500px]"
               />
               <p className="text-right  lg:m-auto p-5">
-                Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-                ipsum. <br /> <strong>Kacang</strong>
+                Foto bersama di depan balai Kampung Siwi dengan Pak Lion (Dosen
+                Pembimbing Lapangan) dan Pak Hendra (Kaprodi) <br />-
+                <strong>Anonim</strong>
               </p>
             </div>
           </div>
@@ -532,11 +634,13 @@ export default function Example() {
             >
               <div>
                 <h1 className=" font-semibold">Kampung Siwi</h1>
-                Jl. Raya Beji No. 13 Desa Beji Kec. Banjarmangu Kode Pos 53452
-                <br />
-                Kecamatan Banjarmangu Kabupaten Banjarnegara Provinsi Jawa
-                Tengah Kode Pos 53452 <br />
-                Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+                <p>
+                  {" "}
+                  Kecamatan Momi Waren, Kabupaten Manokwari Selatan 98322
+                  <br />
+                  Email: Pemdesbejibjm@gmail.com Telp: 081226764534
+                </p>
+                <Image src={Image6} alt="" className="w-[80px]" />
               </div>
               <div className="mt-4">
                 <h1 className="font-semibold">Media Sosial</h1>
