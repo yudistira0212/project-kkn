@@ -491,7 +491,7 @@ export default function Example() {
         </div>
         {/* DATA PENDUDUK */}
         <div className=" text-center md:px-6  pt-5 lg:px-6 bg-[#0B3147] text-white mt-6 pb-[100px]">
-          <Link href={"/potensi"}>
+          <Link href={"/data-penduduk"}>
             <h1 className="underlined-berita mb-5">
               <strong>DATA PENDUDUK</strong>
             </h1>
