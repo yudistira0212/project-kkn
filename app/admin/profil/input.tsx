@@ -36,7 +36,7 @@ const InputProfil = () => {
       setImageUrl(data.image.url);
     }
 
-    console.log({ data });
+    // console.log({ data });
   };
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

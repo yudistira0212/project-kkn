@@ -38,7 +38,7 @@ export const createPotensi = async (
   const url = await getDownloadURL(imgRef);
 
   if (url) {
-    dataProfil.image.name = img.name;
+    dataProfil.image.name = namaImage;
     dataProfil.image.url = url;
   }
 
@@ -56,9 +56,9 @@ export const createPotensi = async (
 export const updatePotensi = async (
   potensiId: string,
   newData: {
-    nama?: string | any;
+    nama?: string;
     deskripsi?: string;
-    image?: { name: string; url: string } | any;
+    image?: { name: string; url: string };
   },
   callback: Function,
   img?: File
@@ -66,16 +66,20 @@ export const updatePotensi = async (
   const potensiDocRef = doc(firestore, "potensi", potensiId);
   const snapshot = (await getDoc(doc(firestore, "potensi", potensiId))).data();
 
-  if (img) {
-    const imgName = snapshot?.image?.name;
+  if (img !== undefined) {
+    console.log("masuk ke image");
+
+    const imgName = snapshot?.image.name;
+    console.log(imgName);
+
     const imgRef = ref(storage, `potensi/${imgName}`);
     await uploadBytes(imgRef, img);
 
     // Dapatkan URL unduhan gambar
     const url = await getDownloadURL(imgRef);
 
-    if (url) {
-      newData.image.name = img.name;
+    if (newData.image) {
+      newData.image.name = imgName;
       newData.image.url = url;
     }
   }

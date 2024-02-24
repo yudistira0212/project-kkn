@@ -1,7 +1,12 @@
 import React from "react";
+import FromDataPenduduk from "./formDataPenduduk";
 
 const PageDataPenduduk = () => {
-  return <div>PageDataPenduduk</div>;
+  return (
+    <div>
+      <FromDataPenduduk />
+    </div>
+  );
 };
 
 export default PageDataPenduduk;
