@@ -182,30 +182,44 @@ function StrukturOrganisasi() {
         <h1 className="text-[30px] underlined-text">
           <strong>Struktur Organisasi </strong>
         </h1>
-        {/* <div className="md:flex justify-evenly pt-5">
-          <div className="px-4">
-            <div className="bg-[#0B3147] rounded-xl mt-2 w-full h-[100px] flex items-center justify-center">
+        <div className="flex flex-col items-center pt-5">
+          <div className="px-4 flex flex-col items-center">
+            <div className="bg-[#0B3147] rounded-xl mt-2 w-[200px] h-[50px] flex items-center justify-center">
               <p className="text-white  ">VISI</p>
             </div>
-            <p className="lg:w-[400px] xl:w-[400px] text-justify px-3 ">
-              Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-              ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
-              quam maecenas volutpat ipsum praesent praesent facilisis. Molestie
-              ligula convallis enim quam.
+            <p className=" text-center px-3 mt-2 font-semibold">
+              “MEWUJUDKAN KAMPUNG SIWI YANG BERLANDASAN IMAN, BERMARTABAT,
+              SEJATERAH DAN TRANSPARAN”
             </p>
           </div>
-          <div className="px-4 mt-6">
-            <div className="bg-[#0B3147] rounded-xl mt-2 w-full h-[100px] flex items-center justify-center">
+          <div className="px-4 max-md:mt-6 flex flex-col items-center">
+            <div className="bg-[#0B3147] rounded-xl mt-2 w-[200px] h-[50px] flex items-center justify-center">
               <p className="text-white  ">MISI</p>
             </div>
-            <p className="lg:w-[400px] xl:w-[400px] text-justify px-3 ">
-              Lorem ipsum dolor sit amet consectetur. Nunc eu venenatis massa
-              ipsum. Diam habitant a ultrices neque suscipit eget at. Lectus
-              quam maecenas volutpat ipsum praesent praesent facilisis. Molestie
-              ligula convallis enim quam.
-            </p>
+            <ol className=" px-3 mt-2 font-semibold">
+              <li>
+                MEWUJUDKAN MASYARAKAT KAMPUNG SIWI BERLANDASKAN KEIMANAN DAN
+                SOSIAL BUDAYA.
+              </li>
+              <li>
+                MENCIPTAKAN PEMERINTAHAN KAMPUNG SIWI YANG BERSIH DAN
+                BERINTEGRASI.
+              </li>
+              <li>
+                MENINGKATKAN KUALITAS HIDUP YANG MEMADAI DAN MEMILIKI DAYA
+                SAING.
+              </li>
+              <li>
+                MENINGKATKAN SUMBER DAYA MANUSIA (SDM), SUMBER DAYA ALAM (SDA),
+                DAN SUMBER DAYA LAINNYA.
+              </li>
+              <li>
+                MENINGKATKAN SARANA DAN PRASARANA BAGI MASYARAKAT KAMPUNG SIWI
+                DI SEGALA BIDANG.
+              </li>
+            </ol>
           </div>
-        </div> */}
+        </div>
         <div className="w-full h-[510px] px-3 mb-5 mt-5">
           <ReactFlow
             fitView
