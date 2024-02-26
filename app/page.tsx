@@ -18,6 +18,7 @@ import Image6 from "./images/Lambang_Kabupaten_Manokwari_Selatan.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ProfilKampung from "./components/profilKampung/ProfilKampung";
 
 const navigation = [
   { name: "Beranda", href: "" },
@@ -397,41 +398,7 @@ export default function Example() {
       </header>
 
       <div>
-        <div className=" relative isolate px-6 pt-14 lg:px-8 ">
-          <div
-            className="absolute inset-x-0 -top-[50px] -z-10 transform-gpu overflow-hidden"
-            aria-hidden="true"
-          >
-            <div>
-              <Image
-                src={panitia}
-                className="object-cover h-[700px] lg:h-auto w-full"
-                alt=""
-              />
-              <div
-                className="absolute inset-0 bg-black"
-                style={{ opacity: "0.5" }}
-              />
-            </div>
-          </div>
-          <div className="max-w-2xl mt-[300px] sm:mt-[250px] lg:mt-56 xl:mt-[250px] 2xl:mt-[300px] relative z-10 mb-[120px] lg:mb-190px] xl:mb-[350px] 2xl:mb-[1200px]">
-            <div className="text-left">
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                Kampung Siwi
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-white line-clamp-3 sm:line-clamp-none">
-                Kampung Siwi merupakan salah satu Kampung dari tujuh kampung
-                dalam wilayah administratif pemerintahan Distrik Momi Waren
-                Kabupaten Manokwari Selatan. Kampung ini terbagi dalam enam
-                Dusun yaitu : Dusun Siwi 1, Dusun Lohoy, Dusun Beyangau, Dusun
-                Siwimer, Dusun Saugemes, dan Dusun Siwi Gunung.
-              </p>
-              <button className=" p-2 bg-[#0B3147] text-white w-[200px] rounded-[50px]">
-                Video Profil Kampung
-              </button>
-            </div>
-          </div>
-        </div>
+        <ProfilKampung />
         {/* POTENSI KAMPUNG */}
         <div
           className=" text-center 

@@ -4,14 +4,15 @@ import { createPotensi } from "@/app/lib/firebase/controllers/potensiController"
 import Modal from "react-modal";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import { createGaleri } from "@/app/lib/firebase/controllers/galeriController";
 
-interface InputPotensiModalProps {
+interface InputGaleriModalProps {
   onSuccess: () => void;
 }
 
-const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
-  const [nama, setNama] = useState("");
-  const [deskripsi, setDeskripsi] = useState("");
+const InputGaleri: React.FC<InputGaleriModalProps> = ({ onSuccess }) => {
+  const [title, setTitle] = useState("");
+  const [detail, setDetail] = useState("");
   const [image, setImage] = useState<File | undefined>(undefined);
   const [imageUrl, setImageUrl] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -32,29 +33,29 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    if (!nama || !deskripsi || !image) {
+    if (!title || !detail || !image) {
       console.log("Harap isi semua bidang");
       setIsLoading(false);
       return;
     }
 
-    const dataProfil = {
-      nama: nama,
-      deskripsi: deskripsi,
+    const dataGaleri = {
+      title: title,
+      detail: detail,
       image: { name: image.name, url: imageUrl },
     };
 
     try {
-      await createPotensi(
-        dataProfil,
+      await createGaleri(
+        dataGaleri,
         image,
         (success: boolean, message: string) => {
           if (success) {
             console.log(message);
             // Bersihkan formulir setelah berhasil membuat entri
             onSuccess();
-            setNama("");
-            setDeskripsi("");
+            setTitle("");
+            setDetail("");
             setImage(undefined);
             setImageUrl("");
             setModalIsOpen(false);
@@ -78,8 +79,6 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
         onClick={() => setModalIsOpen(true)}
         className="bg-blue-500 text-white p-2 rounded-md flex"
       >
-        {" "}
-        Buat Potensi Baru{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -88,13 +87,12 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
           stroke="currentColor"
           className="w-6 h-6"
         >
-          {" "}
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             d="M12 4.5v15m7.5-7.5h-15"
-          />{" "}
-        </svg>{" "}
+          />
+        </svg>
       </button>
 
       <Transition appear show={modalIsOpen} as={React.Fragment}>
@@ -139,8 +137,8 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
                         type="text"
                         id="name"
                         name="name"
-                        value={nama}
-                        onChange={(e) => setNama(e.target.value)}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
                     </div>
@@ -151,8 +149,8 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
                       <textarea
                         id="description"
                         name="description"
-                        value={deskripsi}
-                        onChange={(e) => setDeskripsi(e.target.value)}
+                        value={detail}
+                        onChange={(e) => setDetail(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded-md"
                       />
                     </div>
@@ -181,7 +179,7 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="bg-blue-500 disabled:bg-blue-200 disabled:cursor-wait text-white p-2 rounded-md"
+                        className="bg-blue-500 disabled:bg-blue-300 disabled:cursor-wait hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                       >
                         {isLoading ? "Loading..." : "Input"}
                       </button>
@@ -203,4 +201,4 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
   );
 };
 
-export default InputPotensiModal;
+export default InputGaleri;

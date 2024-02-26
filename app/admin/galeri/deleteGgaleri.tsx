@@ -1,23 +1,21 @@
+import { deleteGaleri } from "@/app/lib/firebase/controllers/galeriController";
 import { deletePotensi } from "@/app/lib/firebase/controllers/potensiController";
 import { Dialog, Transition } from "@headlessui/react";
 import React, { useState } from "react";
 
-interface deletePotensiProps {
-  potensiId: string;
+interface deleteGaleriProps {
+  id: string;
   onSuccess: () => void;
 }
 
-const DeletePotensi: React.FC<deletePotensiProps> = ({
-  potensiId,
-  onSuccess,
-}) => {
+const DeleteGaleri: React.FC<deleteGaleriProps> = ({ id, onSuccess }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleDelete = async () => {
     setIsLoading(true);
-    await deletePotensi(potensiId, (success: boolean, message: string) => {
+    await deleteGaleri(id, (success: boolean, message: string) => {
       setIsLoading(false);
       if (success) {
         onSuccess();
@@ -79,10 +77,10 @@ const DeletePotensi: React.FC<deletePotensiProps> = ({
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title className="text-xl font-semibold">
-                    Delete Potensi
+                    Delete Galeri
                   </Dialog.Title>
                   <Dialog.Description className="mt-2 mb-4">
-                    Yakin ingin menghapus potensi ini?
+                    Yakin ingin menghapus galeri ini?
                   </Dialog.Description>
                   {errorMessage && (
                     <div className="bg-red-100 p-2 rounded mb-4">
@@ -114,4 +112,4 @@ const DeletePotensi: React.FC<deletePotensiProps> = ({
   );
 };
 
-export default DeletePotensi;
+export default DeleteGaleri;

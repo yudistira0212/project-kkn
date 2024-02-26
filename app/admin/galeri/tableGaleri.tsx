@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useRef } from "react";
-import EditPotensi from "./editPotensi";
+// import EditPotensi from "./editPotensi";
 import Image from "next/image";
 import { retrieveData } from "@/app/lib/firebase/services";
-import DeletePotensi from "./deletePotensi";
+import EditPotensi from "./editGaleri";
+import DeleteGaleri from "./deleteGgaleri";
+// import DeletePotensi from "./deletePotensi";
 
-interface dataPotensi {
-  map(arg0: (potensi: any) => React.JSX.Element): React.ReactNode;
+interface DataGaleri {
+  map(arg0: (value: any) => React.JSX.Element): React.ReactNode;
   id: String;
-  nama: String;
-  deskripsi: String;
+  title: String;
+  detail: String;
   image: { name: String; url: String };
 }
-const TablePotensi = () => {
-  const [dataPotensi, setDataPotensi] = useState<dataPotensi>();
+const TableGaleri = () => {
+  const [dataGaleri, setDataGaleri] = useState<DataGaleri>();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
@@ -20,11 +22,9 @@ const TablePotensi = () => {
   }, []);
 
   const getPotensiData = async () => {
-    const data: any = await retrieveData("potensi");
+    const data: any = await retrieveData("galeri");
     if (data) {
-      setDataPotensi(data);
-      console.log("tesssssss");
-      console.log({ dataPotensi });
+      setDataGaleri(data);
     }
   };
 
@@ -34,22 +34,22 @@ const TablePotensi = () => {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border px-4 py-2">Nama</th>
+              <th className="border px-4 py-2">Title</th>
               <th className="border px-4 py-2">Deskripsi</th>
               <th className="border px-4 py-2">Gambar</th>
               <th className="border w-fit px-4 py-2 ">Action</th>
             </tr>
           </thead>
           <tbody>
-            {dataPotensi &&
-              dataPotensi.map((potensi: any) => (
-                <tr key={potensi.id}>
-                  <td className="border px-4 py-2 ">{potensi.nama}</td>
-                  <td className="border px-4 py-2 ">{potensi.deskripsi}</td>
+            {dataGaleri &&
+              dataGaleri?.map((value: any) => (
+                <tr key={value.id}>
+                  <td className="border px-4 py-2 ">{value.title}</td>
+                  <td className="border px-4 py-2 ">{value.detail}</td>
                   <td className="border px-4 py-2 ">
                     <Image
-                      src={potensi.image.url}
-                      alt={potensi.image.name}
+                      src={value.image.url}
+                      alt={value.image.name}
                       width={50}
                       height={50}
                     />
@@ -58,15 +58,11 @@ const TablePotensi = () => {
                     <div className="flex gap-2 justify-center">
                       <EditPotensi
                         show={isEditModalOpen}
-                        potensiId={potensi.id}
-                        potensiData={potensi}
+                        id={value.id}
+                        dataGaleri={value}
                         onSuccess={getPotensiData}
                       />
-
-                      <DeletePotensi
-                        potensiId={potensi.id}
-                        onSuccess={getPotensiData}
-                      />
+                      <DeleteGaleri id={value.id} onSuccess={getPotensiData} />
                     </div>
                   </td>
                 </tr>
@@ -78,4 +74,4 @@ const TablePotensi = () => {
   );
 };
 
-export default TablePotensi;
+export default TableGaleri;

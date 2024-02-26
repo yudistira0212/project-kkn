@@ -1,10 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { checkUser } from "../lib/firebase/services";
+import { checkUser, logoutUser } from "../lib/firebase/services";
 import { User } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +12,9 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [email, setEmail] = useState<string | null>("");
   const [userName, setUserName] = useState<string | null>("");
+  const [loading, setLoading] = useState(false);
+
+  const { push } = useRouter();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -19,25 +22,40 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
 
   const handleProfileClick = () => {
     console.log("Tampilkan profil");
+    setLoading(true);
+    // Tambahkan logika navigasi disini
+    setLoading(false);
   };
 
   const handleSidebarToggle = () => {
+    setLoading(true);
     setIsSidebarOpen(!isSidebarOpen);
+    setLoading(false);
   };
 
-  useEffect(() => {
-    chechUser();
-  }, []);
+  // useEffect(() => {
+  //   check();
+  // }, []);
 
-  const chechUser = async () => {
+  const check = async () => {
     await checkUser((success: boolean, user: User) => {
       if (success) {
         // console.log(message);
         setEmail(user.email);
         setUserName(user.displayName);
+      } else {
+        push("/login");
       }
     });
-    // console.log(user);
+  };
+
+  const logOut = async () => {
+    try {
+      await logoutUser();
+      push("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -87,7 +105,7 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
                     Lihat Profil
                   </button>
                   <button
-                    // onClick={handleLogout}
+                    onClick={logOut}
                     className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   >
                     Logout
@@ -110,6 +128,13 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
               />
             </svg>
           </button>
+          <div
+            className="absolute inset-0 bg-blue-600 opacity-75 z-10"
+            style={{
+              width: loading ? "100%" : "0%",
+              transition: "width 0.5s ease",
+            }}
+          ></div>
         </nav>
 
         <div className="flex h-full">

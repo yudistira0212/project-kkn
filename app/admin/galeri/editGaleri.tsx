@@ -1,35 +1,36 @@
 "use client";
+import { updateGaleri } from "@/app/lib/firebase/controllers/galeriController";
 // import { XIcon } from "@heroicons/react";
-import { updatePotensi } from "@/app/lib/firebase/controllers/potensiController";
+import { updateImage } from "@/app/lib/firebase/services";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface EditPotensiProps {
   show: boolean;
-  potensiId: string;
-  potensiData: any;
+  id: string;
+  dataGaleri: any;
   onSuccess: () => void;
 }
 
 const EditPotensi: React.FC<EditPotensiProps> = ({
   show,
-  potensiId,
-  potensiData,
+  id,
+  dataGaleri,
   onSuccess,
 }) => {
-  const [nama, setNama] = useState<string | undefined>(potensiData?.nama);
-  const [deskripsi, setDeskripsi] = useState<string | undefined>(
-    potensiData?.deskripsi
-  );
+  const [title, setTitle] = useState<string | undefined>(dataGaleri?.title);
+  const [detail, setDetail] = useState<string | undefined>(dataGaleri?.detail);
   const [image, setImage] = useState<File | undefined>();
+
   const [isOpen, setIsOpen] = useState(show);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [imageUrl, setImageUrl] = useState(potensiData?.image.url);
+  const [imageUrl, setImageUrl] = useState(dataGaleri?.image.url);
 
   useEffect(() => {
     setIsOpen(show);
   }, [show]);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -45,15 +46,15 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
     e.preventDefault();
     setIsSubmit(true);
 
-    if (!potensiId || !potensiData || !nama || !deskripsi) {
+    if (!id || !dataGaleri || !title || !detail) {
       setIsSubmit(false);
       return;
     }
 
     try {
-      await updatePotensi(
-        potensiId,
-        { nama, deskripsi },
+      await updateGaleri(
+        id,
+        { title, detail },
         (success: boolean, message: string) => {
           if (success) {
             setIsOpen(false);
@@ -153,7 +154,7 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
                     <form onSubmit={handleSubmit}>
                       <div className="mb-4">
                         <label
-                          htmlFor="nama"
+                          htmlFor="title"
                           className="block text-gray-700 font-bold mb-2"
                         >
                           Nama
@@ -161,24 +162,24 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
                         <input
                           type="text"
                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          id="nama"
-                          value={nama || ""}
-                          onChange={(e) => setNama(e.target.value)}
+                          id="title"
+                          value={title || ""}
+                          onChange={(e) => setTitle(e.target.value)}
                         />
                       </div>
                       <div className="mb-4">
                         <label
-                          htmlFor="deskripsi"
+                          htmlFor="detail"
                           className="block text-gray-700 font-bold mb-2"
                         >
                           Deskripsi
                         </label>
                         <textarea
                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                          id="deskripsi"
+                          id="detail"
                           rows={3}
-                          value={deskripsi || ""}
-                          onChange={(e) => setDeskripsi(e.target.value)}
+                          value={detail || ""}
+                          onChange={(e) => setDetail(e.target.value)}
                         ></textarea>
                       </div>
                       {imageUrl && (
