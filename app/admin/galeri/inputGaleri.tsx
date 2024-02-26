@@ -158,8 +158,9 @@ const InputGaleri: React.FC<InputGaleriModalProps> = ({ onSuccess }) => {
                       <Image
                         src={imageUrl}
                         alt="Preview"
-                        height={50}
-                        width={50}
+                        height={500}
+                        width={500}
+                        className="w-full h-40 object-cover rounded-xl"
                       />
                     )}
                     <div className="mb-4">

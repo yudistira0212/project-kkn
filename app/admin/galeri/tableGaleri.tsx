@@ -34,6 +34,7 @@ const TableGaleri = () => {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-100">
+              <th className="border px-4  py-2">NO</th>
               <th className="border px-4 py-2">Title</th>
               <th className="border px-4 py-2">Deskripsi</th>
               <th className="border px-4 py-2">Gambar</th>
@@ -42,16 +43,18 @@ const TableGaleri = () => {
           </thead>
           <tbody>
             {dataGaleri &&
-              dataGaleri?.map((value: any) => (
+              dataGaleri?.map((value: any, index?: any) => (
                 <tr key={value.id}>
+                  <td className="border text-center px-4 py-2">{index + 1}</td>
                   <td className="border px-4 py-2 ">{value.title}</td>
                   <td className="border px-4 py-2 ">{value.detail}</td>
                   <td className="border px-4 py-2 ">
                     <Image
                       src={value.image.url}
                       alt={value.image.name}
-                      width={50}
-                      height={50}
+                      height={500}
+                      width={500}
+                      className="w-full h-20 object-cover rounded-xl"
                     />
                   </td>
                   <td className="border w-fit px-4 py-2 ">

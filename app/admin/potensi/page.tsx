@@ -7,7 +7,10 @@ import TablePotensi from "./tablePotensi";
 const PagePotensi = () => {
   return (
     <div>
-      <InputPotensi onSuccess={() => window.location.reload()} />
+      <div className="flex justify-between mx-5 items-center py-2">
+        <h1 className="text-2xl font-bold">Potensi</h1>
+        <InputPotensi onSuccess={() => window.location.reload()} />
+      </div>
       <div>
         <TablePotensi />
       </div>

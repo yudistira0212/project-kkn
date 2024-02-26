@@ -78,8 +78,6 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
         onClick={() => setModalIsOpen(true)}
         className="bg-blue-500 text-white p-2 rounded-md flex"
       >
-        {" "}
-        Buat Potensi Baru{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -160,8 +158,9 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
                       <Image
                         src={imageUrl}
                         alt="Preview"
-                        height={50}
-                        width={50}
+                        height={500}
+                        width={500}
+                        className="w-full h-40 object-cover rounded-xl"
                       />
                     )}
                     <div className="mb-4">
@@ -183,7 +182,7 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
                         disabled={isLoading}
                         className="bg-blue-500 disabled:bg-blue-200 disabled:cursor-wait text-white p-2 rounded-md"
                       >
-                        {isLoading ? "Loading..." : "Input"}
+                        {isLoading ? "Loading..." : "Simpan"}
                       </button>
                       <button
                         onClick={() => setModalIsOpen(false)}

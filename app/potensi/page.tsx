@@ -8,6 +8,7 @@ import Image from "next/image";
 import Gambar2 from "../images/GAMBAR 2.jpg";
 import Gambar3 from "../images/GAMBAR 3.jpg";
 import Image6 from "../images/Lambang_Kabupaten_Manokwari_Selatan.png";
+import PotensiKampung from "../components/potensi/PotensiKampung";
 
 const navigation = [
   { name: "Beranda", href: "" },
@@ -84,43 +85,9 @@ function Potensi() {
           </Dialog.Panel>
         </Dialog>
       </header>
-      <div className="mt-[100px] px-6 text-center">
-        <h1 className="text-[30px] underlined-text">
-          <strong>Potensi Kampung Siwi</strong>
-        </h1>
-        <div className="flex max-sm:flex-col py-4 ">
-          <Image
-            src={Gambar2}
-            alt=""
-            className="sm:w-1/2 rounded-tr-[100px] rounded-bl-[100px] max-sm:rounded-lg sm:shadow-2xl"
-          />
-          <p className="lg:w-1/2 md:m-auto sm:px-5 text-left max-sm:text-justify">
-            <strong>Kacang Tanah</strong>
-            <br />
-            Kampung Siwi dikenal dengan hasil panen yang melimpah, didukung oleh
-            tanah yang subur. Keberlimpahan ini menjadikan kampung tersebut
-            sebagai tempat yang cocok untuk bercocok tanam. Sehingga banyak
-            masyarakat memanfaatkan tanah subur dengan menanam berbagai macam
-            tumbuh-tumbuhan, salah satunya adalah kacang tanah.
-          </p>
-        </div>
-        <div className="flex py-4 max-sm:flex-col-reverse ">
-          <p className="lg:w-1/2 md:m-auto mt-1 sm:px-5 text-right max-sm:text-justify">
-            <strong>Kali Panas</strong>
-            <br />
-            Kampung Siwi memiliki daya tarik utama dalam wisata seperti Kali
-            Panas. Air panas yang mengalir di sepanjang kali, menciptakan
-            suasana hangat yang menarik dan memberikan pengalaman unik bagi
-            pengunjung. Selain itu, lokasi kali panas ini mudah diakses, yang
-            mana hanya perlu menyusuri sepanjang jalan Kampung Siwi{" "}
-          </p>
-          <Image
-            src={Gambar3}
-            alt=""
-            className="sm:w-1/2 rounded-tl-[100px] rounded-br-[100px] max-sm:rounded-lg sm:shadow-2xl"
-          />
-        </div>
-      </div>
+
+      <PotensiKampung />
+
       <footer className="md:flex  py-[30px] items-center px-8 mt-4 bg-[#0B3147] text-white">
         {" "}
         <div className="w-full md:w-2/3 ">

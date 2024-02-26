@@ -14,6 +14,8 @@ const firestore = getFirestore(app);
 
 export const struktur = async (
   dataStruktur: {
+    visi: string;
+    misi: string;
     kepalaKampung: string;
     sekretaris: string;
     kasiPemerintahan: string;

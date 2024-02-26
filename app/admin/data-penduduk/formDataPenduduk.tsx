@@ -48,7 +48,7 @@ const FromDataPenduduk: React.FC = () => {
 
   useEffect(() => {
     getDataProfil();
-  }, [isLoading]);
+  }, []);
 
   const getDataProfil = async () => {
     const data: any = await retrieveDataById("dataKampung", "dataPenduduk");
@@ -76,6 +76,7 @@ const FromDataPenduduk: React.FC = () => {
       await Penduduk(formValues, (success: boolean, message: string) => {
         if (success) {
           setIsLoading(false);
+          getDataProfil();
           alert(message);
         } else {
           setIsLoading(false);
