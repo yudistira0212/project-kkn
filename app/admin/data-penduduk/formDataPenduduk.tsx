@@ -98,7 +98,7 @@ const FromDataPenduduk: React.FC = () => {
             </label>
             <input
               type="checkbox"
-              name="isedit"
+              id="isedit"
               onChange={(e) => setIsEdit(e.target.checked)}
               checked={isEdit}
               className="hover:cursor-pointer"

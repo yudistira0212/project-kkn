@@ -18,12 +18,27 @@ const InputProfil = () => {
   const [telephone, setTelephone] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
+  // const [image, setImage] = useState<File | undefined>(undefined);
+
   const [file, setFile] = useState<File>();
   const [isOpen, setIsOpen] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     getDataProfil();
   }, []);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        setImageUrl(event.target.result as string);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
   const getDataProfil = async () => {
     const data: any = await retrieveDataById("dataKampung", "profil");
@@ -88,7 +103,8 @@ const InputProfil = () => {
       await createProfil(data, files, (success: boolean, message: string) => {
         if (success) {
           alert(message);
-          clearForm();
+          // clearForm();
+          getDataProfil();
           setIsSubmitted(false);
         } else {
           alert(message);
@@ -108,119 +124,152 @@ const InputProfil = () => {
 
   return (
     <div>
-      <div className={`transition-all duration-500 ease-linear `}>
-        <form onSubmit={handleSubmit} className="flex flex-col mx-10 space-y-4">
-          <div>Data Kampung</div>
-          <div className="flex flex-col">
-            <label
-              htmlFor="nama-kampung"
-              className="text-gray-800 font-semibold mb-1"
-            >
-              Nama Kampung
-            </label>
-            <input
-              type="text"
-              name="nama-kampung"
-              onChange={onChangeHandler}
-              value={title}
-              id="nama-kampung"
-              className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label
-              htmlFor="alamat"
-              className="text-gray-800 font-semibold mb-1"
-            >
-              Alamat
-            </label>
-            <input
-              type="text"
-              name="alamat"
-              value={alamat}
-              onChange={onChangeHandler}
-              id="alamat"
-              className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label
-              htmlFor="alamat"
-              className="text-gray-800 font-semibold mb-1"
-            >
-              Nomor Telephone
-            </label>
-            <input
-              type="text"
-              name="telephone"
-              value={telephone}
-              onChange={onChangeHandler}
-              id="alamat"
-              className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label
-              htmlFor="alamat"
-              className="text-gray-800 font-semibold mb-1"
-            >
-              Email Kampung
-            </label>
-            <input
-              type="text"
-              name="email"
-              value={email}
-              onChange={onChangeHandler}
-              id="alamat"
-              className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label
-              htmlFor="deskripsi"
-              className="text-gray-800 font-semibold mb-1"
-            >
-              Deskripsi
-            </label>
-            <textarea
-              name="deskripsi"
-              value={deskripsi}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                setDeskripsi(e.target.value)
-              }
-              id="deskripsi"
-              className="border h-[200px] border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          {imageUrl && (
-            <div>
-              <Image src={imageUrl} width={200} height={200} alt="gambar" />
+      <div className={`flex justify-between mx-5 items-center py-2`}>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col w-full space-y-4"
+        >
+          <div className="flex justify-between ">
+            <h1 className="text-2xl font-bold">Data Kampung</h1>
+            <div className="flex w-fit justify-start hover:cursor-pointer items-center gap-2 ">
+              <label htmlFor="isedit" className="hover:cursor-pointer">
+                {isEdit ? "Edit Aktif" : "Edit Non-Aktif"}
+              </label>
+              <input
+                type="checkbox"
+                id="isedit"
+                onChange={(e) => setIsEdit(e.target.checked)}
+                checked={isEdit}
+                className="hover:cursor-pointer"
+              />
             </div>
-          )}
-          <div className="flex flex-col">
-            <label
-              htmlFor="foto-kampung"
-              className="text-gray-800 font-semibold mb-1"
-            >
-              Foto Kampung
-            </label>
-            <input
-              type="file"
-              name="foto-kampung"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setFile(e.target.files?.[0])
-              }
-              id="foto-kampung"
-              className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
+          </div>
+          <div className="flex gap-2">
+            <div className=" ">
+              <label
+                htmlFor="foto-kampung"
+                className="text-gray-800 font-semibold mb-1"
+              >
+                Foto Kampung
+              </label>
+              {imageUrl && (
+                <div>
+                  <Image
+                    src={imageUrl}
+                    width={1000}
+                    height={1000}
+                    alt="gambar"
+                    className="w-96 object-cover rounded-xl"
+                  />
+                </div>
+              )}
+              <div className="flex flex-col">
+                <input
+                  disabled={!isEdit}
+                  type="file"
+                  name="foto-kampung"
+                  onChange={handleImageChange}
+                  id="foto-kampung"
+                  className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+              </div>
+            </div>
+            <div className="w-full">
+              <div className="flex   flex-col">
+                <label
+                  htmlFor="nama-kampung"
+                  className="text-gray-800 font-semibold mb-1"
+                >
+                  Nama Kampung
+                </label>
+                <input
+                  disabled={!isEdit}
+                  type="text"
+                  name="nama-kampung"
+                  onChange={onChangeHandler}
+                  value={title}
+                  id="nama-kampung"
+                  className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label
+                  htmlFor="alamat"
+                  className="text-gray-800 font-semibold mb-1"
+                >
+                  Alamat
+                </label>
+                <input
+                  disabled={!isEdit}
+                  type="text"
+                  name="alamat"
+                  value={alamat}
+                  onChange={onChangeHandler}
+                  id="alamat"
+                  className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label
+                  htmlFor="alamat"
+                  className="text-gray-800 font-semibold mb-1"
+                >
+                  Nomor Telephone
+                </label>
+                <input
+                  disabled={!isEdit}
+                  type="text"
+                  name="telephone"
+                  value={telephone}
+                  onChange={onChangeHandler}
+                  id="alamat"
+                  className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label
+                  htmlFor="alamat"
+                  className="text-gray-800 font-semibold mb-1"
+                >
+                  Email Kampung
+                </label>
+                <input
+                  disabled={!isEdit}
+                  type="text"
+                  name="email"
+                  value={email}
+                  onChange={onChangeHandler}
+                  id="alamat"
+                  className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+              </div>
+              <div className="flex flex-col">
+                <label
+                  htmlFor="deskripsi"
+                  className="text-gray-800 font-semibold mb-1"
+                >
+                  Deskripsi
+                </label>
+                <textarea
+                  name="deskripsi"
+                  value={deskripsi}
+                  disabled={!isEdit}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setDeskripsi(e.target.value)
+                  }
+                  id="deskripsi"
+                  className="border h-[200px] border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
+                />
+              </div>
+            </div>
           </div>
           <div>
             <button
               type="submit"
-              disabled={isSubmitted}
+              disabled={isSubmitted || !isEdit}
               className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-blue-200"
             >
-              Submit
+              {isSubmitted ? "Loading..." : "Simpan"}
             </button>
           </div>
         </form>
