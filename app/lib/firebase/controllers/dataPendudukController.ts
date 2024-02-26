@@ -18,6 +18,7 @@ export const Penduduk = async (
     totalPenduduk: string;
     perempuan: string;
     keluarga: string;
+    deskripsi: string;
   },
   callback: Function
 ) => {
