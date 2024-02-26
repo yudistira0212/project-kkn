@@ -23,8 +23,6 @@ const TablePotensi = () => {
     const data: any = await retrieveData("potensi");
     if (data) {
       setDataPotensi(data);
-      console.log("tesssssss");
-      console.log({ dataPotensi });
     }
   };
 
