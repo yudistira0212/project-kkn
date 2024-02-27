@@ -99,7 +99,7 @@ const InputProfil = () => {
 
   return (
     <div>
-      <div className={`flex justify-between mx-5 items-center py-2`}>
+      <div className={`flex justify-between  items-center`}>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col w-full space-y-4"

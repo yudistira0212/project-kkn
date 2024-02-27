@@ -4,20 +4,15 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  getFirestore,
   updateDoc,
 } from "firebase/firestore";
-import app from "./../init";
+import { firestore, storage } from "../init";
 import {
   deleteObject,
   getDownloadURL,
-  getStorage,
   ref,
   uploadBytes,
 } from "firebase/storage";
-
-const firestore = getFirestore(app);
-const storage = getStorage(app);
 
 export const createPotensi = async (
   dataProfil: {

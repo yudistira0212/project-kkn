@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-slate-600 h-16 flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
+      <nav className="bg-[#0B3147] shadow-md h-16 flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
         <div className="flex items-center gap-4">
           <div>
             <Link href="/">
@@ -76,14 +76,30 @@ const Navbar = () => {
           <div className="flex items-center">
             <div className="mr-3 flex items-center text-white justify-center gap-2">
               <h4>{session?.user?.name}</h4>
-              <Image
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-10 h-10 rounded-full cursor-pointer"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+
+              {/* <Image
                 src="/app/images/gaul.jpg"
                 alt="Profile"
                 width={40}
                 height={40}
                 className="w-10 h-10 rounded-full cursor-pointer"
                 onClick={() => setModalIsOpen(!modalIsOpen)}
-              />
+              /> */}
             </div>
             {/* <button
               onClick={() => signOut()}
@@ -147,12 +163,13 @@ const Navbar = () => {
                         <div className=" py-3 bg-slate-200 text-center">
                           <h4>{session?.user?.email}</h4>
                         </div>
-                        <button
+                        <Link
                           // onClick={handleProfileClick}
+                          href="/reset-password"
                           className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                         >
-                          Lihat Profil
-                        </button>
+                          Reset Password
+                        </Link>
                         <button
                           onClick={() => signOut()}
                           className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"

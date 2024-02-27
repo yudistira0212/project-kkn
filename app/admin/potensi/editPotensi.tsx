@@ -76,7 +76,7 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
     <div>
       <button
         onClick={() => setIsOpen(true)}
-        className="bg-blue-500 text-white p-2 rounded-md flex"
+        className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md flex"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +207,7 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
                       <button
                         type="submit"
                         disabled={isSubmit}
-                        className="bg-blue-500 disabled:bg-blue-300 disabled:cursor-wait hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-blue-500 disabled:bg-opacity-50 disabled:cursor-wait hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                       >
                         {isSubmit ? "Loading..." : "Simpan"}
                       </button>

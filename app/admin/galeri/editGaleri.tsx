@@ -77,7 +77,7 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
     <div>
       <button
         onClick={() => setIsOpen(true)}
-        className="bg-blue-500 text-white p-2 rounded-md flex"
+        className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md flex"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

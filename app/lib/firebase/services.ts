@@ -1,16 +1,7 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  setDoc,
-} from "firebase/firestore";
-import app from "./init";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { firestore, auth, storage } from "./init";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
@@ -18,14 +9,9 @@ import {
 import {
   deleteObject,
   getDownloadURL,
-  getStorage,
   ref,
   uploadBytes,
 } from "firebase/storage";
-
-const firestore = getFirestore(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
 
 export const retrieveData = async (collectionName: string) => {
   const snapshot = await getDocs(collection(firestore, collectionName));

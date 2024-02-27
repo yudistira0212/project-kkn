@@ -92,7 +92,7 @@ const InputStruktur = () => {
 
   return (
     <div>
-      <div className="flex  justify-between mx-5 my-2">
+      <div className="flex  justify-between ">
         <h1 className="text-2xl font-bold">Struktur Organisasi</h1>
         <div className="flex w-fit justify-start hover:cursor-pointer items-center gap-2 ">
           <label htmlFor="isedit" className="hover:cursor-pointer">
@@ -108,7 +108,7 @@ const InputStruktur = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="m-5 ">
+      <form onSubmit={handleSubmit} className=" mt-2 ">
         <div className="flex gap-3">
           <div className="flex flex-col h-60 justify-between w-full">
             <label htmlFor="visi" className="font-semibold">
