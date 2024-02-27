@@ -1,36 +1,27 @@
 "use client";
 import { loginUser } from "@/app/lib/firebase/services";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Mencegah halaman untuk refresh saat form disubmit
+    e.preventDefault();
     setIsSubmitted(true);
-    // Mengambil nilai dari input form
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-
-    const userData = {
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-    };
 
     try {
       // Panggil fungsi loginUser untuk melakukan proses login
-      await loginUser(userData, (success: boolean, message: string) => {
-        if (success) {
-          formData.set("email", ""); // Mengosongkan nilai email setelah login
-          formData.set("password", ""); // Mengosongkan nilai password setelah login
-          navigate.push("/admin/profil/");
-          alert(message);
-          console.log(message); // Output pesan sukses
-        } else {
-          console.error(message); // Output pesan kesalahan jika login gagal
-          alert("gagalll");
-        }
+      signIn("credentials", {
+        email,
+        password,
+        redirect: true,
+        callbackUrl: "/admin/profil",
       });
 
       setIsSubmitted(false);
@@ -42,7 +33,6 @@ const LoginPage = () => {
 
   return (
     <div>
-      {" "}
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           {/* <a
@@ -73,6 +63,9 @@ const LoginPage = () => {
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@email.com"
                     required
@@ -89,11 +82,14 @@ const LoginPage = () => {
                     type="password"
                     id="password"
                     name="password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                     required
+                    placeholder="Enter your password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
-                <div className="flex items-start mb-5">
+                {/* <div className="flex items-start mb-5">
                   <div className="flex items-center h-5">
                     <input
                       id="remember"
@@ -108,16 +104,16 @@ const LoginPage = () => {
                   >
                     Remember me
                   </label>
-                </div>
+                </div> */}
                 <button
                   type="submit"
                   disabled={isSubmitted}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white disabled:bg-opacity-50 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Submit
+                  {isSubmitted ? "loading..." : "Submit"}
                 </button>
 
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Belum Punya akun?{" "}
                   <a
                     href="#"
@@ -125,7 +121,7 @@ const LoginPage = () => {
                   >
                     Register di sini
                   </a>
-                </p>
+                </p> */}
               </form>
             </div>
           </div>

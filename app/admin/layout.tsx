@@ -4,24 +4,26 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { checkUser } from "../lib/firebase/services";
 import { User } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Sidebar from "../components/admin/Sidebar/Sidebar";
 import Navbar from "../components/admin/Navbar/Navbar";
+import { useSession } from "next-auth/react";
 
 const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { push } = useRouter();
+  const session = useSession();
 
-  // const check = async () => {
-  //   await checkUser((success: boolean, user: User) => {
-  //     if (success) {
-  //       // console.log(message);
-  //     } else {
-  //       push("/login");
-  //     }
-  //   });
-  // };
+  console.log(session);
+
+  useEffect(() => {
+    if (session.status === "unauthenticated") {
+      push("/login");
+    }
+  }, [session]);
+
+  console.log({ session });
 
   return (
     <div>
