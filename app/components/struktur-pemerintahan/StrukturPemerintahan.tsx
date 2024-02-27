@@ -149,7 +149,11 @@ const StrukturPemerintahan = () => {
               <p className="text-white  ">MISI</p>
             </div>
             {formData?.misi.split("\n").map((item, index) => {
-              return <p className=" px-3 mt-2 font-semibold">{item}</p>;
+              return (
+                <p key={index} className=" px-3 mt-2 font-semibold">
+                  {item}
+                </p>
+              );
             })}
             {/* <p className=" px-3 mt-2 font-semibold">{formData?.misi}</p> */}
           </div>
