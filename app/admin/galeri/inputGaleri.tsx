@@ -77,7 +77,7 @@ const InputGaleri: React.FC<InputGaleriModalProps> = ({ onSuccess }) => {
     <div>
       <button
         onClick={() => setModalIsOpen(true)}
-        className="bg-blue-500 text-white p-2 rounded-md flex"
+        className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md flex"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -180,13 +180,13 @@ const InputGaleri: React.FC<InputGaleriModalProps> = ({ onSuccess }) => {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="bg-blue-500 disabled:bg-blue-300 disabled:cursor-wait hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-blue-500 disabled:bg-opacity-50 disabled:cursor-wait hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                       >
                         {isLoading ? "Loading..." : "Input"}
                       </button>
                       <button
                         onClick={() => setModalIsOpen(false)}
-                        className="bg-gray-500 text-white p-2 rounded-md ml-2"
+                        className="bg-gray-500 hover:bg-gray-700 text-white p-2 rounded-md ml-2"
                       >
                         tutup
                       </button>

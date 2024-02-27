@@ -76,7 +76,7 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
     <div>
       <button
         onClick={() => setModalIsOpen(true)}
-        className="bg-blue-500 text-white p-2 rounded-md flex"
+        className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md flex"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -180,13 +180,13 @@ const InputPotensiModal: React.FC<InputPotensiModalProps> = ({ onSuccess }) => {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="bg-blue-500 disabled:bg-blue-200 disabled:cursor-wait text-white p-2 rounded-md"
+                        className="bg-blue-500 hover:bg-blue-700 disabled:bg-opacity-50 disabled:cursor-wait text-white p-2 rounded-md"
                       >
                         {isLoading ? "Loading..." : "Simpan"}
                       </button>
                       <button
                         onClick={() => setModalIsOpen(false)}
-                        className="bg-gray-500 text-white p-2 rounded-md ml-2"
+                        className="bg-gray-500 hover:bg-gray-700 text-white p-2 rounded-md ml-2"
                       >
                         tutup
                       </button>

@@ -29,7 +29,7 @@ const DeleteGaleri: React.FC<deleteGaleriProps> = ({ id, onSuccess }) => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="bg-red-500 text-white px-4 py-2 rounded"
+        className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ const DeleteGaleri: React.FC<deleteGaleriProps> = ({ id, onSuccess }) => {
                     </button>
                     <button
                       onClick={handleDelete}
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      className="bg-red-500 hover:bg-red-700 disabled:bg-opacity-50 disabled:cursor-wait text-white px-4 py-2 rounded"
                       disabled={isLoading}
                     >
                       {isLoading ? "Loading..." : "Delete"}

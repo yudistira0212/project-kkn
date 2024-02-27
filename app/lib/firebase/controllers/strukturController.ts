@@ -8,9 +8,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import app from "./../init";
-
-const firestore = getFirestore(app);
+import { firestore } from "../init";
 
 export const struktur = async (
   dataStruktur: {

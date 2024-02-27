@@ -8,7 +8,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import app from "./../init";
+import { firestore, storage } from "../init";
 import {
   deleteObject,
   getDownloadURL,
@@ -16,9 +16,6 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
-
-const firestore = getFirestore(app);
-const storage = getStorage(app);
 
 export const createGaleri = async (
   dataGaleri: {

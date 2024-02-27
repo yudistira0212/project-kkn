@@ -31,7 +31,7 @@ const DeletePotensi: React.FC<deletePotensiProps> = ({
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="bg-red-500 text-white px-4 py-2 rounded"
+        className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,13 +92,13 @@ const DeletePotensi: React.FC<deletePotensiProps> = ({
                   <div className="mt-4 flex justify-end gap-3">
                     <button
                       onClick={() => setIsOpen(false)}
-                      className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+                      className="bg-gray-300 hover:bg-gray-500 text-gray-800 px-4 py-2 rounded"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={handleDelete}
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      className="bg-red-500 disabled:cursor-wait hover:bg-red-700 text-white px-4 py-2 rounded"
                       disabled={isLoading}
                     >
                       {isLoading ? "Loading..." : "Delete"}

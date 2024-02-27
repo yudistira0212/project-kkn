@@ -4,24 +4,23 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { checkUser } from "../lib/firebase/services";
 import { User } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Sidebar from "../components/admin/Sidebar/Sidebar";
 import Navbar from "../components/admin/Navbar/Navbar";
+import { useSession } from "next-auth/react";
+import Footer from "../components/admin/Footer/Footer";
 
 const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { push } = useRouter();
+  const session = useSession();
 
-  // const check = async () => {
-  //   await checkUser((success: boolean, user: User) => {
-  //     if (success) {
-  //       // console.log(message);
-  //     } else {
-  //       push("/login");
-  //     }
-  //   });
-  // };
+  useEffect(() => {
+    if (session.status === "unauthenticated") {
+      push("/login");
+    }
+  }, [session]);
 
   return (
     <div>
@@ -31,13 +30,16 @@ const LayoutAdmin = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <div className="flex overflow-hidden ">
-          <div className="sticky ">
+          <div className="sticky shadow-xl z-5">
             <Sidebar />
           </div>
 
-          <div className="flex-1 w-full overflow-y-auto    p-4">{children}</div>
+          <div className="flex-1 w-full overflow-y-auto rounded  bg-[#0b314731]  m-1 p-2">
+            {children}
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
