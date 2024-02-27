@@ -2,9 +2,9 @@
 const nextConfig = {
   images: {
     domains: ["firebasestorage.googleapis.com"],
-    eslint: {
-      ignoreDuringBuilds: true,
-    },
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
