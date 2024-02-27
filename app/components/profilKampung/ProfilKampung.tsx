@@ -37,7 +37,7 @@ const ProfilKampung = () => {
         <div>
           <Image
             src={profil.image.url}
-            className="object-cover h-[100vh]  w-full"
+            className="object-cover h-[500px]  w-full"
             width={1000}
             height={100}
             alt="gaul"

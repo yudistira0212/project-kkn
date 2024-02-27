@@ -91,7 +91,7 @@ const FromDataPenduduk: React.FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between m-5 mx-9">
+      <div className="flex  justify-between">
         <form onSubmit={handleSubmit} className="w-full">
           <div className="flex w-fit justify-start hover:cursor-pointer items-center gap-2 ">
             <label htmlFor="isedit" className="hover:cursor-pointer">

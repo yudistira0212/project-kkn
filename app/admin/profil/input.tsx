@@ -9,19 +9,32 @@ import React, { useEffect, useState } from "react";
 import type { DocumentData } from "firebase/firestore";
 import Image from "next/image";
 
+interface FormValues {
+  title: string;
+  alamat: string;
+  deskripsi: string;
+  email: string;
+  telephone: string;
+  image: { name: string; url: string };
+}
+
 const InputProfil = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [title, setTitle] = useState("");
-  const [alamat, setAlamat] = useState("");
-  const [deskripsi, setDeskripsi] = useState("");
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
+  const [formValues, setFormValues] = useState<FormValues>({
+    title: "",
+    alamat: "",
+    deskripsi: "",
+    email: "",
+    telephone: "",
+    image: { name: "", url: "" },
+  });
 
   // const [image, setImage] = useState<File | undefined>(undefined);
 
   const [file, setFile] = useState<File>();
-  const [isOpen, setIsOpen] = useState(true);
+
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
@@ -40,87 +53,49 @@ const InputProfil = () => {
     }
   };
 
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const getDataProfil = async () => {
     const data: any = await retrieveDataById("dataKampung", "profil");
     if (data) {
-      setTitle(data.title);
-      setDeskripsi(data.deskripsi);
-      setAlamat(data.alamat);
-      setEmail(data.email);
-      setTelephone(data.telephone);
-      setImageUrl(data.image.url);
-    }
-
-    // console.log({ data });
-  };
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (name === "nama-kampung") {
-      setTitle(value);
-    } else if (name === "alamat") {
-      setAlamat(value);
-    } else if (name === "telephone") {
-      setTelephone(value);
-    } else if (name === "email") {
-      setEmail(value);
+      setFormValues(data);
     }
   };
-
-  const clearForm = () => {
-    setTitle("");
-    setDeskripsi("");
-    setAlamat("");
-    setFile(undefined);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setIsSubmitted(true);
 
-    const data = {
-      title: title as string,
-      alamat: alamat as string,
-      deskripsi: deskripsi as string,
-      email: email as string,
-      telephone: telephone as string,
-      image: { name: "", url: "" },
-    };
     const files = file as File;
-
     try {
-      // await uploadImage(
-      //   files,
-      //   "foto-kampung",
-      //   (success: boolean, url: string) => {
-      //     if (success) {
-      //       data.img = { name: files.name, url };
-      //     } else {
-      //       alert(url);
-      //     }
-      //   }
-      // );
+      await createProfil(
+        formValues,
+        (success: boolean, message: string) => {
+          if (success) {
+            alert(message);
 
-      await createProfil(data, files, (success: boolean, message: string) => {
-        if (success) {
-          alert(message);
-          // clearForm();
-          getDataProfil();
-          setIsSubmitted(false);
-        } else {
-          alert(message);
-          setIsSubmitted(false);
-        }
-      });
-    } catch (error: any) {
+            getDataProfil();
+            setIsEdit(false);
+            setIsSubmitted(false);
+          } else {
+            alert(message);
+            setIsSubmitted(false);
+          }
+        },
+        files
+      );
+    } catch (error) {
       console.log({ error });
       alert("error" + error);
       setIsSubmitted(false);
     }
   };
-
-  // const isOpenHandeler = () => {
-  //   setIsOpen(!isOpen);
-  // };
 
   return (
     <div>
@@ -152,10 +127,20 @@ const InputProfil = () => {
               >
                 Foto Kampung
               </label>
-              {imageUrl && (
+              {imageUrl ? (
                 <div>
                   <Image
                     src={imageUrl}
+                    width={1000}
+                    height={1000}
+                    alt="gambar"
+                    className="w-96 object-cover rounded-xl"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Image
+                    src={formValues.image.url}
                     width={1000}
                     height={1000}
                     alt="gambar"
@@ -177,7 +162,7 @@ const InputProfil = () => {
             <div className="w-full">
               <div className="flex   flex-col">
                 <label
-                  htmlFor="nama-kampung"
+                  htmlFor="title"
                   className="text-gray-800 font-semibold mb-1"
                 >
                   Nama Kampung
@@ -185,10 +170,10 @@ const InputProfil = () => {
                 <input
                   disabled={!isEdit}
                   type="text"
-                  name="nama-kampung"
-                  onChange={onChangeHandler}
-                  value={title}
-                  id="nama-kampung"
+                  name="title"
+                  onChange={handleInputChange}
+                  value={formValues.title}
+                  id="title"
                   className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
                 />
               </div>
@@ -203,32 +188,32 @@ const InputProfil = () => {
                   disabled={!isEdit}
                   type="text"
                   name="alamat"
-                  value={alamat}
-                  onChange={onChangeHandler}
+                  onChange={handleInputChange}
+                  value={formValues.alamat}
                   id="alamat"
                   className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
                 />
               </div>
               <div className="flex flex-col">
                 <label
-                  htmlFor="alamat"
+                  htmlFor="telephone"
                   className="text-gray-800 font-semibold mb-1"
                 >
                   Nomor Telephone
                 </label>
                 <input
                   disabled={!isEdit}
-                  type="text"
+                  type="number"
                   name="telephone"
-                  value={telephone}
-                  onChange={onChangeHandler}
-                  id="alamat"
+                  onChange={handleInputChange}
+                  value={formValues.telephone}
+                  id="telephone"
                   className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
                 />
               </div>
               <div className="flex flex-col">
                 <label
-                  htmlFor="alamat"
+                  htmlFor="email"
                   className="text-gray-800 font-semibold mb-1"
                 >
                   Email Kampung
@@ -237,9 +222,9 @@ const InputProfil = () => {
                   disabled={!isEdit}
                   type="text"
                   name="email"
-                  value={email}
-                  onChange={onChangeHandler}
-                  id="alamat"
+                  onChange={handleInputChange}
+                  value={formValues.email}
+                  id="email"
                   className="border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
                 />
               </div>
@@ -252,11 +237,8 @@ const InputProfil = () => {
                 </label>
                 <textarea
                   name="deskripsi"
-                  value={deskripsi}
-                  disabled={!isEdit}
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                    setDeskripsi(e.target.value)
-                  }
+                  onChange={handleInputChange}
+                  value={formValues.deskripsi}
                   id="deskripsi"
                   className="border h-[200px] border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-2 focus:ring-gray-500"
                 />

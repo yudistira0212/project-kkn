@@ -7,11 +7,6 @@ const ProfilPage = () => {
       <div>
         <InputProfil />
       </div>
-      <hr />
-      <div>
-        <h1>title</h1>
-        <div>deskripsi</div>
-      </div>
     </div>
   );
 };

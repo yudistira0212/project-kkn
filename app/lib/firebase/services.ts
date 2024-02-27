@@ -81,14 +81,16 @@ export const loginUser = async (
 ) => {
   try {
     // Lakukan proses login dengan Firebase Authentication
-    await signInWithEmailAndPassword(
-      auth,
-      userData.email,
-      userData.password
-    ).then((user) => {
-      const email = user.user.email;
-      callback(true, email + " berhasil login");
-    });
+    await signInWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((user) => {
+        if (user) {
+          // const email = user.user.email;
+          callback(true, user.user.email + " berhasil login");
+        }
+      })
+      .catch((error) => {
+        callback(false, error.message);
+      });
     // Pengguna berhasil login
     console.log("User logged in successfully");
     // return true;
@@ -105,18 +107,22 @@ export const logoutUser = async () => {
 };
 
 // user check user is login
-export const checkUser = async (callback: Function) => {
-  try {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        callback(true, user);
-      } else {
-        callback(false, "anda belum login");
-      }
-    });
-  } catch (error) {
-    callback(false, error);
-  }
+export const checkUser = async () => {
+  return new Promise((resolve, reject) => {
+    try {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("check", { user });
+          resolve(true); // Kembalikan true jika pengguna terautentikasi
+        } else {
+          console.log("gagal", { user });
+          resolve(false); // Kembalikan false jika pengguna tidak terautentikasi
+        }
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 // upload image
@@ -182,20 +188,21 @@ export const createProfil = async (
     telephone: string;
     image: { name: string; url: string };
   },
-  img: File,
-  callback: Function
+  callback: Function,
+  img?: File
 ) => {
-  const imgRef = ref(storage, `image/profilKampung`);
+  if (img) {
+    const imgRef = ref(storage, `image/profilKampung`);
 
-  // Upload gambar
-  await uploadBytes(imgRef, img);
+    // Upload gambar
+    await uploadBytes(imgRef, img);
 
-  // Dapatkan URL unduhan gambar
-  const url = await getDownloadURL(imgRef);
-
-  if (url) {
-    dataProfil.image.name = img.name;
-    dataProfil.image.url = url;
+    // Dapatkan URL unduhan gambar
+    const url = await getDownloadURL(imgRef);
+    if (url) {
+      dataProfil.image.name = img.name;
+      dataProfil.image.url = url;
+    }
   }
 
   // Buat referensi ke koleksi "dataKampung" di Firestore
