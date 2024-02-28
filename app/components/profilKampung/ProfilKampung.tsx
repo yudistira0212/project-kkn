@@ -37,7 +37,7 @@ const ProfilKampung = () => {
         <div>
           <Image
             src={profil.image.url}
-            className="object-cover h-[500px]  w-full"
+            className="object-cover h-[600px]  w-full"
             width={1000}
             height={100}
             alt="gaul"
@@ -48,7 +48,7 @@ const ProfilKampung = () => {
           />
         </div>
       </div>
-      <div className="max-w-2xl  mt-[200px] sm:mt-[130px] lg:mt-[100px] xl:mt-[200px] 2xl:mt-[200px] relative z-10 mb-[120px] lg:mb-190px] xl:mb-[300px] 2xl:mb-[1200px]">
+      <div className="max-w-2xl  mt-[200px] sm:mt-[130px] lg:mt-[100px] xl:mt-[200px] 2xl:mt-[250px] relative z-10 mb-[120px] lg:mb-190px]  ">
         <div className="text-left">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
             {profil.title}
