@@ -6,14 +6,12 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface EditPotensiProps {
-  show: boolean;
   potensiId: string;
   potensiData: any;
   onSuccess: () => void;
 }
 
 const EditPotensi: React.FC<EditPotensiProps> = ({
-  show,
   potensiId,
   potensiData,
   onSuccess,
@@ -23,13 +21,10 @@ const EditPotensi: React.FC<EditPotensiProps> = ({
     potensiData?.deskripsi
   );
   const [image, setImage] = useState<File | undefined>();
-  const [isOpen, setIsOpen] = useState(show);
+  const [isOpen, setIsOpen] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const [imageUrl, setImageUrl] = useState(potensiData?.image.url);
 
-  useEffect(() => {
-    setIsOpen(show);
-  }, [show]);
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);

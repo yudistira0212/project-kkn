@@ -22,6 +22,7 @@ export const createGaleri = async (
     title: string;
     detail: string;
     image: { name: string; url: string };
+    createdAt?: string;
   },
   image: File,
   callback: Function
@@ -39,6 +40,7 @@ export const createGaleri = async (
     dataGaleri.image.name = namaImage;
     dataGaleri.image.url = url;
   }
+  dataGaleri.createdAt = new Date().toISOString();
   const CollectionRef = collection(firestore, "galeri");
 
   try {

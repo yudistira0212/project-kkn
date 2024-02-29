@@ -19,6 +19,7 @@ export const createPotensi = async (
     nama: string;
     deskripsi: string;
     image: { name: string; url: string };
+    createdAt?: string;
   },
   img: File,
   callback: Function
@@ -37,6 +38,7 @@ export const createPotensi = async (
     dataProfil.image.url = url;
   }
 
+  dataProfil.createdAt = new Date().toISOString();
   const CollectionRef = collection(firestore, "potensi");
 
   try {

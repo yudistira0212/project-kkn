@@ -20,7 +20,11 @@ const Galeri = () => {
     const data: any = await retrieveData("galeri");
     if (data) {
       if (data.length > 0) {
-        const filteredData = data.slice(0, 4);
+        const sortedData = data.sort(
+          (a: any, b: any) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        const filteredData = sortedData.slice(0, 4);
         setDataGaleri(filteredData);
       }
     }

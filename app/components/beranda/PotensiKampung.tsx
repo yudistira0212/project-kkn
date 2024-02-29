@@ -38,7 +38,11 @@ const PotensiKampung = () => {
   const getPotensiData = async () => {
     const data: any = await retrieveData("potensi");
     if (data.length > 0) {
-      const filteredData = data.slice(0, 2);
+      const sortedData = data.sort(
+        (a: any, b: any) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      const filteredData = sortedData.slice(0, 2);
       setDataPotensi(filteredData);
     }
   };
